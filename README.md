@@ -5,7 +5,7 @@
 ## Overview
 HashLife Analytics is a web application designed to analyze the evolution and impact of cultural hashtags on X (formerly Twitter). The tool provides insights into how hashtags related to cultural events trend over time, showing patterns of engagement, related topics, and key influencers driving the conversation.
 
-![HashLife Analytics Screenshot](https://via.placeholder.com/800x400.png?text=HashLife+Analytics+Screenshot)
+![HashLife Analytics Screenshot](/screenshot.png)
 
 ## Features
 
