@@ -34,8 +34,31 @@ public class TwitterService {
         LocalDateTime endDateTime = endDate.plusDays(1).atStartOfDay();
 
         // Search for tweets with the hashtag
-        TweetList tweetList = client.searchTweets("#" + hashtag, null,
-                                               startDateTime, endDateTime, 100);
+        TweetList tweetList;
+        try {
+            // Use the correct signature for searchTweets
+            tweetList = client.searchTweets("#" + hashtag);
+
+            // Filter tweets by date manually since we can't use date params directly
+            if (tweetList != null && tweetList.getData() != null) {
+                tweetList.getData().removeIf(tweet -> {
+                    if (tweet.getCreatedAt() == null) return true;
+                    LocalDateTime tweetDate = tweet.getCreatedAt()
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDateTime();
+                    return tweetDate.isBefore(startDateTime) || tweetDate.isAfter(endDateTime);
+                });
+            }
+        } catch (Exception e) {
+            // Log error and return an empty analysis if API call fails
+            System.err.println("Error accessing Twitter API: " + e.getMessage());
+            return createEmptyAnalysis(hashtag, startDateTime, endDateTime);
+        }
+
+        // Check if we have data
+        if (tweetList == null || tweetList.getData() == null || tweetList.getData().isEmpty()) {
+            return createEmptyAnalysis(hashtag, startDateTime, endDateTime);
+        }
 
         List<Tweet> tweets = new ArrayList<>();
         Map<String, Integer> tweetsByDay = new HashMap<>();
@@ -44,8 +67,9 @@ public class TwitterService {
         Map<String, Integer> influencerCount = new HashMap<>();
 
         // Process all found tweets
-        for (TweetV2 tweetV2 : tweetList.getData()) {
-            Tweet tweet = convertToTweet(tweetV2);
+        for (TweetV2.TweetData tweetData : tweetList.getData()) {
+            // Convert TweetData to your Tweet model
+            Tweet tweet = convertToTweet(tweetData);
             tweets.add(tweet);
 
             // Count tweets by day
@@ -93,26 +117,41 @@ public class TwitterService {
         );
     }
 
-    private Tweet convertToTweet(TweetV2 tweetV2) {
+    private Tweet convertToTweet(TweetV2.TweetData tweetData) {
         Tweet tweet = new Tweet();
-        tweet.setId(tweetV2.getId());
-        tweet.setText(tweetV2.getText());
-        tweet.setUsername(tweetV2.getUser().getName());
-        tweet.setCreatedAt(
-            tweetV2.getCreatedAt()
-                .toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDateTime()
-        );
-        tweet.setLikeCount(tweetV2.getLikeCount());
-        tweet.setRetweetCount(tweetV2.getRetweetCount());
-        tweet.setReplyCount(tweetV2.getReplyCount());
-        tweet.setQuoteCount(tweetV2.getQuoteCount());
+        tweet.setId(tweetData.getId());
+        tweet.setText(tweetData.getText());
+
+        // Safely handle user info
+        if (tweetData.getUser() != null) {
+            tweet.setUsername(tweetData.getUser().getName());
+        } else {
+            tweet.setUsername("Unknown");
+        }
+
+        // Handle date conversion safely
+        if (tweetData.getCreatedAt() != null) {
+            // Convert directly to LocalDateTime using ZoneId
+            tweet.setCreatedAt(
+                LocalDateTime.ofInstant(
+                    tweetData.getCreatedAt().toInstant(java.time.ZoneOffset.UTC),
+                    ZoneId.systemDefault()
+                )
+            );
+        } else {
+            tweet.setCreatedAt(LocalDateTime.now());
+        }
+
+        // Set engagement metrics - handle primitive int fields (can't be null)
+        tweet.setLikeCount(tweetData.getLikeCount());
+        tweet.setRetweetCount(tweetData.getRetweetCount());
+        tweet.setReplyCount(tweetData.getReplyCount());
+        tweet.setQuoteCount(tweetData.getQuoteCount());
 
         // Extract hashtags
         List<String> hashtags = new ArrayList<>();
-        if (tweetV2.getEntities() != null && tweetV2.getEntities().getHashtags() != null) {
-            hashtags = tweetV2.getEntities().getHashtags().stream()
+        if (tweetData.getEntities() != null && tweetData.getEntities().getHashtags() != null) {
+            hashtags = tweetData.getEntities().getHashtags().stream()
                 .map(hashtagEntity -> hashtagEntity.getText())
                 .collect(Collectors.toList());
         }
@@ -127,5 +166,21 @@ public class TwitterService {
             .limit(limit)
             .map(entry -> entry.getKey().toString())
             .collect(Collectors.toList());
+    }
+
+    private HashtagAnalysis createEmptyAnalysis(String hashtag, LocalDateTime start, LocalDateTime end) {
+        return new HashtagAnalysis(
+            hashtag,
+            start,
+            end,
+            0,
+            0,
+            0,
+            Collections.emptyList(),
+            Collections.emptyMap(),
+            Collections.emptyMap(),
+            Collections.emptyList(),
+            Collections.emptyList()
+        );
     }
 }
