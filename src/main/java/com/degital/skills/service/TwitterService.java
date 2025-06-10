@@ -38,6 +38,18 @@ public class TwitterService {
         LocalDateTime startDateTime = startDate.atStartOfDay();
         LocalDateTime endDateTime = endDate.plusDays(1).atStartOfDay();
 
+        // Twitter API's recent search only allows searching within the past 7 days
+        // Adjust startDateTime if it's more than 7 days in the past
+        LocalDateTime sevenDaysAgo = LocalDateTime.now().minusDays(7);
+        if (startDateTime.isBefore(sevenDaysAgo)) {
+            startDateTime = sevenDaysAgo;
+        }
+
+        // Ensure endDateTime is not in the future
+        if (endDateTime.isAfter(LocalDateTime.now())) {
+            endDateTime = LocalDateTime.now();
+        }
+
         // Build the query URL with the hashtag
         String query = "#" + hashtag + " -is:retweet lang:en";
 
