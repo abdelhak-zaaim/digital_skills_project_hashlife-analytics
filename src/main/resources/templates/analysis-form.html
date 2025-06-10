@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Analyze Hashtag - Hashtag Lifecycle Analysis</title>
+</head>
+<body>
+<section class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="h4 mb-0">Analyze Cultural Hashtag</h2>
+                </div>
+                <div class="card-body">
+                    <form action="/analyze" method="post" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="hashtag" class="form-label">Hashtag to analyze</label>
+                            <div class="input-group">
+                                <span class="input-group-text">#</span>
+                                <input type="text" class="form-control" id="hashtag" name="hashtag"
+                                       placeholder="Enter hashtag without #" required>
+                            </div>
+                            <div class="form-text">Example: cannes2025, festivalavignon, etc.</div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="startDate" class="form-label">Start Date</label>
+                                <input type="date" class="form-control" id="startDate" name="startDate" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="endDate" class="form-label">End Date</label>
+                                <input type="date" class="form-control" id="endDate" name="endDate" required>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle"></i>
+                            Choose a time period that covers the lifecycle of the cultural event.
+                            For most events, analyzing 1-2 weeks before and after the event provides good insights.
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Analyze Hashtag</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// Client-side validation
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.needs-validation');
+    const startDateInput = document.getElementById('startDate');
+    const endDateInput = document.getElementById('endDate');
+
+    // Set default dates (last week to today)
+    const today = new Date();
+    const lastWeek = new Date();
+    lastWeek.setDate(lastWeek.getDate() - 7);
+
+    startDateInput.value = lastWeek.toISOString().split('T')[0];
+    endDateInput.value = today.toISOString().split('T')[0];
+
+    form.addEventListener('submit', function(event) {
+        if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        // Check that end date is after start date
+        const startDate = new Date(startDateInput.value);
+        const endDate = new Date(endDateInput.value);
+
+        if (endDate < startDate) {
+            alert('End date must be after start date');
+            event.preventDefault();
+        }
+
+        form.classList.add('was-validated');
+    });
+});
+</script>
+</body>
+</html>

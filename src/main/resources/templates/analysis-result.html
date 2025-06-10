@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout(~{::title}, ~{::section})}">
+<head>
+    <title th:text="'Analysis of #' + ${analysis.hashtag} + ' - Hashtag Lifecycle Analysis'">Analysis Result</title>
+</head>
+<body>
+<section class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">
+            Analysis of <span class="text-primary" th:text="'#' + ${analysis.hashtag}">hashtag</span>
+        </h1>
+        <a href="/analysis" class="btn btn-outline-primary">New Analysis</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-info">
+                Analyzing period from
+                <strong th:text="${#temporals.format(analysis.startDate, 'dd MMM yyyy')}">01 Jun 2025</strong>
+                to
+                <strong th:text="${#temporals.format(analysis.endDate, 'dd MMM yyyy')}">10 Jun 2025</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- Summary Stats -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-muted">Total Tweets</h5>
+                    <h2 class="card-text" th:text="${analysis.totalTweets}">1000</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-muted">Total Retweets</h5>
+                    <h2 class="card-text" th:text="${analysis.totalRetweets}">500</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-muted">Total Likes</h5>
+                    <h2 class="card-text" th:text="${analysis.totalLikes}">2500</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-muted">Engagement Rate</h5>
+                    <h2 class="card-text" th:text="${analysis.totalTweets > 0 ? #numbers.formatDecimal((analysis.totalRetweets + analysis.totalLikes) / analysis.totalTweets, 1, 2) : 0}">3.0</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <div class="card-header">
+                    <h3 class="h5 mb-0">Hashtag Lifecycle</h3>
+                </div>
+                <div class="card-body">
+                    <canvas id="lifecycleChart" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Related Hashtags -->
+        <div class="col-md-6">
+            <div class="card shadow h-100">
+                <div class="card-header">
+                    <h3 class="h5 mb-0">Related Hashtags</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center"
+                            th:each="hashtag : ${analysis.relatedHashtags}">
+                            <span th:text="'#' + ${hashtag}">hashtag</span>
+                            <span class="badge bg-primary rounded-pill">
+                                <!-- Would show count here if available -->
+                            </span>
+                        </li>
+                        <li class="list-group-item text-center text-muted" th:if="${#lists.isEmpty(analysis.relatedHashtags)}">
+                            No related hashtags found
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Influencers -->
+        <div class="col-md-6">
+            <div class="card shadow h-100">
+                <div class="card-header">
+                    <h3 class="h5 mb-0">Top Influencers</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center"
+                            th:each="influencer : ${analysis.topInfluencers}">
+                            <span th:text="${influencer}">@username</span>
+                            <span class="badge bg-primary rounded-pill">
+                                <!-- Would show count here if available -->
+                            </span>
+                        </li>
+                        <li class="list-group-item text-center text-muted" th:if="${#lists.isEmpty(analysis.topInfluencers)}">
+                            No top influencers found
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sample Tweets -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h3 class="h5 mb-0">Sample Tweets</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tweet-list">
+                        <div class="tweet-card mb-3" th:each="tweet : ${analysis.sampleTweets}">
+                            <div class="d-flex">
+                                <div class="tweet-avatar me-3">
+                                    <div class="avatar-placeholder bg-light rounded-circle d-flex align-items-center justify-content-center"
+                                        style="width: 50px; height: 50px; color: #777;">
+                                        <i class="bi bi-person"></i>
+                                    </div>
+                                </div>
+                                <div class="tweet-content">
+                                    <div class="tweet-header d-flex">
+                                        <h6 class="mb-0" th:text="${tweet.username}">Username</h6>
+                                        <small class="text-muted ms-auto"
+                                               th:text="${#temporals.format(tweet.createdAt, 'dd MMM yyyy HH:mm')}">Date</small>
+                                    </div>
+                                    <div class="tweet-text my-1" th:text="${tweet.text}">Tweet text</div>
+                                    <div class="tweet-stats d-flex text-muted small">
+                                        <div class="me-3">
+                                            <i class="bi bi-heart"></i> <span th:text="${tweet.likeCount}">0</span>
+                                        </div>
+                                        <div class="me-3">
+                                            <i class="bi bi-repeat"></i> <span th:text="${tweet.retweetCount}">0</span>
+                                        </div>
+                                        <div>
+                                            <i class="bi bi-chat"></i> <span th:text="${tweet.replyCount}">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center text-muted py-3" th:if="${#lists.isEmpty(analysis.sampleTweets)}">
+                            No sample tweets to display
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script th:inline="javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    const tweetsByDay = /*[[${analysis.tweetsByDay}]]*/ {};
+    const engagementByDay = /*[[${analysis.engagementByDay}]]*/ {};
+
+    // Prepare data
+    const labels = Object.keys(tweetsByDay).sort();
+    const tweetData = labels.map(day => tweetsByDay[day] || 0);
+    const engagementData = labels.map(day => engagementByDay[day] || 0);
+
+    // Create chart
+    const ctx = document.getElementById('lifecycleChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Tweet Count',
+                    borderColor: '#1DA1F2',
+                    data: tweetData,
+                    tension: 0.3,
+                    yAxisID: 'y'
+                },
+                {
+                    label: 'Engagement',
+                    borderColor: '#17a2b8',
+                    data: engagementData,
+                    tension: 0.3,
+                    yAxisID: 'y1'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            interaction: {
+                mode: 'index',
+                intersect: false
+            },
+            scales: {
+                y: {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Tweet Count'
+                    }
+                },
+                y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Engagement'
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>
