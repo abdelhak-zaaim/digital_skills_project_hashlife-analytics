@@ -2,63 +2,60 @@ package com.degital.skills.service;
 
 import com.degital.skills.model.HashtagAnalysis;
 import com.degital.skills.model.Tweet;
-import io.github.redouane59.twitter.TwitterClient;
-import io.github.redouane59.twitter.dto.tweet.TweetList;
-import io.github.redouane59.twitter.dto.tweet.TweetV2;
-import io.github.redouane59.twitter.signature.TwitterCredentials;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
 public class TwitterService {
 
+    private static final int MAX_RESULTS = 100;
+
     @Value("${twitter.api.bearer.token}")
     private String bearerToken;
 
-    private TwitterClient getTwitterClient() {
-        return new TwitterClient(TwitterCredentials.builder()
-                .bearerToken(bearerToken)
-                .build());
-    }
+    private final RestTemplate restTemplate = new RestTemplate();
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
+    private final String TWITTER_API_BASE_URL = "https://api.twitter.com/2/tweets/search/recent";
 
     public HashtagAnalysis analyzeHashtag(String hashtag, LocalDate startDate, LocalDate endDate) {
-        TwitterClient client = getTwitterClient();
         LocalDateTime startDateTime = startDate.atStartOfDay();
         LocalDateTime endDateTime = endDate.plusDays(1).atStartOfDay();
 
-        // Search for tweets with the hashtag
-        TweetList tweetList;
-        try {
-            // Use the correct signature for searchTweets
-            tweetList = client.searchTweets("#" + hashtag);
+        // Build the query URL with the hashtag
+        String query = "#" + hashtag + " -is:retweet lang:en";
 
-            // Filter tweets by date manually since we can't use date params directly
-            if (tweetList != null && tweetList.getData() != null) {
-                tweetList.getData().removeIf(tweet -> {
-                    if (tweet.getCreatedAt() == null) return true;
-                    LocalDateTime tweetDate = tweet.getCreatedAt()
-                        .atZone(ZoneId.systemDefault())
-                        .toLocalDateTime();
-                    return tweetDate.isBefore(startDateTime) || tweetDate.isAfter(endDateTime);
-                });
-            }
-        } catch (Exception e) {
-            // Log error and return an empty analysis if API call fails
-            System.err.println("Error accessing Twitter API: " + e.getMessage());
-            return createEmptyAnalysis(hashtag, startDateTime, endDateTime);
-        }
+        // Format dates for Twitter API
+        String startTime = startDateTime.format(DateTimeFormatter.ISO_DATE_TIME) + "Z";
+        String endTime = endDateTime.format(DateTimeFormatter.ISO_DATE_TIME) + "Z";
 
-        // Check if we have data
-        if (tweetList == null || tweetList.getData() == null || tweetList.getData().isEmpty()) {
-            return createEmptyAnalysis(hashtag, startDateTime, endDateTime);
-        }
+        // Build the complete URL with parameters
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(TWITTER_API_BASE_URL)
+            .queryParam("query", query)
+            .queryParam("max_results", MAX_RESULTS)
+            .queryParam("tweet.fields", "created_at,public_metrics,entities")
+            .queryParam("expansions", "author_id")
+            .queryParam("user.fields", "name,username")
+            .queryParam("start_time", startTime)
+            .queryParam("end_time", endTime);
+
+        String twitterApiUrl = builder.build().encode().toUriString();
 
         List<Tweet> tweets = new ArrayList<>();
         Map<String, Integer> tweetsByDay = new HashMap<>();
@@ -66,42 +63,77 @@ public class TwitterService {
         Map<String, Integer> relatedHashtagsCount = new HashMap<>();
         Map<String, Integer> influencerCount = new HashMap<>();
 
-        // Process all found tweets
-        for (TweetV2.TweetData tweetData : tweetList.getData()) {
-            // Convert TweetData to your Tweet model
-            Tweet tweet = convertToTweet(tweetData);
-            tweets.add(tweet);
+        try {
+            // Set up HTTP headers with the bearer token
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + bearerToken);
 
-            // Count tweets by day
-            String day = tweet.getCreatedAt().toLocalDate().toString();
-            tweetsByDay.put(day, tweetsByDay.getOrDefault(day, 0) + 1);
+            // Make the API request
+            ResponseEntity<String> response = restTemplate.exchange(
+                twitterApiUrl,
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                String.class
+            );
 
-            // Calculate engagement by day (likes + retweets + quotes + replies)
-            int engagement = tweet.getLikeCount() + tweet.getRetweetCount() +
-                            tweet.getQuoteCount() + tweet.getReplyCount();
-            engagementByDay.put(day, engagementByDay.getOrDefault(day, 0) + engagement);
+            // Parse the JSON response
+            JsonNode root = objectMapper.readTree(response.getBody());
+            JsonNode tweetData = root.get("data");
+            JsonNode includes = root.get("includes");
 
-            // Count related hashtags
-            if (tweet.getHashtagsUsed() != null) {
-                for (String tag : tweet.getHashtagsUsed()) {
-                    if (!tag.equalsIgnoreCase(hashtag)) {
-                        relatedHashtagsCount.put(tag, relatedHashtagsCount.getOrDefault(tag, 0) + 1);
-                    }
+            // Create a map of user IDs to usernames for easy lookup
+            Map<String, String> userMap = new HashMap<>();
+            if (includes != null && includes.has("users")) {
+                JsonNode users = includes.get("users");
+                for (JsonNode user : users) {
+                    userMap.put(user.get("id").asText(), user.get("name").asText());
                 }
             }
 
-            // Count influencers
-            influencerCount.put(tweet.getUsername(),
-                             influencerCount.getOrDefault(tweet.getUsername(), 0) + 1);
+            // Process all tweets
+            if (tweetData != null && tweetData.isArray()) {
+                for (JsonNode tweetNode : tweetData) {
+                    Tweet tweet = convertJsonToTweet(tweetNode, userMap);
+                    tweets.add(tweet);
+
+                    // Count tweets by day
+                    String day = tweet.getCreatedAt().toLocalDate().toString();
+                    tweetsByDay.put(day, tweetsByDay.getOrDefault(day, 0) + 1);
+
+                    // Calculate engagement by day
+                    int engagement = tweet.getLikeCount() + tweet.getRetweetCount() +
+                        tweet.getQuoteCount() + tweet.getReplyCount();
+                    engagementByDay.put(day, engagementByDay.getOrDefault(day, 0) + engagement);
+
+                    // Count related hashtags
+                    if (tweet.getHashtagsUsed() != null) {
+                        for (String tag : tweet.getHashtagsUsed()) {
+                            if (!tag.equalsIgnoreCase(hashtag)) {
+                                relatedHashtagsCount.put(tag, relatedHashtagsCount.getOrDefault(tag, 0) + 1);
+                            }
+                        }
+                    }
+
+                    // Count influencers
+                    influencerCount.put(tweet.getUsername(), influencerCount.getOrDefault(tweet.getUsername(), 0) + 1);
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error fetching data from Twitter API: " + e.getMessage());
+            e.printStackTrace();
+            return createEmptyAnalysis(hashtag, startDateTime, endDateTime);
         }
 
-        // Get top related hashtags
-        List<String> topRelatedHashtags = getTopItems(relatedHashtagsCount, 10);
+        // If no tweets were found, return empty analysis
+        if (tweets.isEmpty()) {
+            return createEmptyAnalysis(hashtag, startDateTime, endDateTime);
+        }
 
-        // Get top influencers
+        // Get top related hashtags and influencers
+        List<String> topRelatedHashtags = getTopItems(relatedHashtagsCount, 10);
         List<String> topInfluencers = getTopItems(influencerCount, 10);
 
-        // Create and return the hashtag analysis
+        // Create and return hashtag analysis
         return new HashtagAnalysis(
             hashtag,
             startDateTime,
@@ -117,43 +149,52 @@ public class TwitterService {
         );
     }
 
-    private Tweet convertToTweet(TweetV2.TweetData tweetData) {
+    private Tweet convertJsonToTweet(JsonNode tweetNode, Map<String, String> userMap) {
         Tweet tweet = new Tweet();
-        tweet.setId(tweetData.getId());
-        tweet.setText(tweetData.getText());
 
-        // Safely handle user info
-        if (tweetData.getUser() != null) {
-            tweet.setUsername(tweetData.getUser().getName());
-        } else {
-            tweet.setUsername("Unknown");
-        }
+        // Extract basic tweet info
+        tweet.setId(tweetNode.get("id").asText());
+        tweet.setText(tweetNode.get("text").asText());
 
-        // Handle date conversion safely
-        if (tweetData.getCreatedAt() != null) {
-            // Convert directly to LocalDateTime using ZoneId
-            tweet.setCreatedAt(
-                LocalDateTime.ofInstant(
-                    tweetData.getCreatedAt().toInstant(java.time.ZoneOffset.UTC),
-                    ZoneId.systemDefault()
-                )
-            );
+        // Set username from user map
+        String authorId = tweetNode.has("author_id") ? tweetNode.get("author_id").asText() : null;
+        tweet.setUsername(authorId != null && userMap.containsKey(authorId) ?
+                         userMap.get(authorId) : "Unknown");
+
+        // Handle created_at date
+        if (tweetNode.has("created_at")) {
+            String createdAt = tweetNode.get("created_at").asText();
+            tweet.setCreatedAt(LocalDateTime.ofInstant(
+                Instant.parse(createdAt),
+                ZoneId.systemDefault()
+            ));
         } else {
             tweet.setCreatedAt(LocalDateTime.now());
         }
 
-        // Set engagement metrics - handle primitive int fields (can't be null)
-        tweet.setLikeCount(tweetData.getLikeCount());
-        tweet.setRetweetCount(tweetData.getRetweetCount());
-        tweet.setReplyCount(tweetData.getReplyCount());
-        tweet.setQuoteCount(tweetData.getQuoteCount());
+        // Handle public metrics
+        if (tweetNode.has("public_metrics")) {
+            JsonNode metrics = tweetNode.get("public_metrics");
+            tweet.setLikeCount(metrics.has("like_count") ? metrics.get("like_count").asInt() : 0);
+            tweet.setRetweetCount(metrics.has("retweet_count") ? metrics.get("retweet_count").asInt() : 0);
+            tweet.setReplyCount(metrics.has("reply_count") ? metrics.get("reply_count").asInt() : 0);
+            tweet.setQuoteCount(metrics.has("quote_count") ? metrics.get("quote_count").asInt() : 0);
+        } else {
+            tweet.setLikeCount(0);
+            tweet.setRetweetCount(0);
+            tweet.setReplyCount(0);
+            tweet.setQuoteCount(0);
+        }
 
         // Extract hashtags
         List<String> hashtags = new ArrayList<>();
-        if (tweetData.getEntities() != null && tweetData.getEntities().getHashtags() != null) {
-            hashtags = tweetData.getEntities().getHashtags().stream()
-                .map(hashtagEntity -> hashtagEntity.getText())
-                .collect(Collectors.toList());
+        if (tweetNode.has("entities") && tweetNode.get("entities").has("hashtags")) {
+            JsonNode hashtagNodes = tweetNode.get("entities").get("hashtags");
+            for (JsonNode hashtagNode : hashtagNodes) {
+                if (hashtagNode.has("tag")) {
+                    hashtags.add(hashtagNode.get("tag").asText());
+                }
+            }
         }
         tweet.setHashtagsUsed(hashtags);
 
