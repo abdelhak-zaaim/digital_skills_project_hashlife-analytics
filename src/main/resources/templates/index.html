@@ -2,58 +2,144 @@
 <html xmlns:th="http://www.thymeleaf.org"
       th:replace="~{layout :: layout(~{::title}, ~{::section})}">
 <head>
-    <title>Hashtag Lifecycle Analysis - Home</title>
+    <title>HashLife Analytics - Cultural Hashtag Analysis</title>
 </head>
 <body>
-<section class="container my-5">
-    <div class="row align-items-center">
-        <div class="col-md-6">
-            <h1 class="display-4 mb-4">Analyse de l'évolution d'un hashtag culturel</h1>
-            <p class="lead">Explorez le cycle de vie des hashtags liés à des événements culturels sur X (ex-Twitter).</p>
-            <p>Cet outil vous permet de suivre l'évolution d'un hashtag dans le temps, d'analyser son engagement
-                et de découvrir les tendances associées.</p>
-            <div class="mt-4">
-                <a href="/analysis" class="btn btn-primary btn-lg">Commencer l'analyse</a>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card shadow-lg">
-                <div class="card-body text-center p-5">
-                    <i class="bi bi-hash display-1 text-primary"></i>
-                    <h2 class="mt-3">Comprendre le cycle de vie</h2>
-                    <p>Visualisez la popularité, l'engagement et les connexions entre hashtags pour mieux comprendre leur impact culturel.</p>
-                </div>
+<section>
+    <!-- Hero Section -->
+    <div class="page-header text-center">
+        <div class="container py-5">
+            <h1 class="display-3 fw-bold mb-3">HashLife <span class="text-light">Analytics</span></h1>
+            <p class="lead col-md-8 mx-auto">Discover how cultural hashtags evolve, engage, and influence conversations on social media platforms.</p>
+            <div class="mt-5">
+                <a href="/analysis" class="btn btn-light btn-lg shadow px-5">Start Analyzing <i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
     </div>
 
-    <div class="row mt-5">
-        <div class="col-md-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h3 class="card-title"><i class="bi bi-graph-up"></i> Évolution temporelle</h3>
-                    <p class="card-text">Analysez comment un hashtag gagne en popularité, atteint son pic et décline au fil du temps.</p>
+    <div class="container">
+        <!-- Introduction -->
+        <div class="row align-items-center my-5">
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-4">Analyse de l'évolution d'un hashtag culturel</h2>
+                <p class="lead">Explorez le cycle de vie des hashtags liés à des événements culturels sur X (ex-Twitter).</p>
+                <p>Notre outil vous permet de suivre l'évolution d'un hashtag culturel dans le temps, d'analyser son engagement
+                   et de découvrir les tendances associées pour comprendre l'impact des événements culturels sur les réseaux sociaux.</p>
+                <div class="mt-4 d-flex gap-3">
+                    <a href="/analysis" class="btn btn-primary">Commencer l'analyse</a>
+                    <a href="#features" class="btn btn-outline-primary">En savoir plus</a>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-4 mt-lg-0">
+                <div class="position-relative">
+                    <div class="card shadow-lg border-0">
+                        <div class="card-body text-center p-5">
+                            <div class="p-3 rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                <i class="bi bi-hash display-5 text-primary"></i>
+                            </div>
+                            <h2 class="mt-3">Visualiser l'impact culturel</h2>
+                            <p>Transformez des données en insights visuels qui racontent l'histoire d'un événement culturel à travers ses hashtags.</p>
+                        </div>
+                    </div>
+                    <div class="position-absolute" style="top: -15px; right: -15px; z-index: -1;">
+                        <div class="rounded-circle bg-accent-color" style="width: 100px; height: 100px; opacity: 0.2;"></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h3 class="card-title"><i class="bi bi-people"></i> Engagement</h3>
-                    <p class="card-text">Mesurez l'engagement généré par le hashtag à travers les likes, retweets et réponses.</p>
+
+        <!-- Features -->
+        <div id="features" class="my-5 pt-3">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Fonctionnalités clés</h2>
+                <p class="lead">Tout ce dont vous avez besoin pour analyser les hashtags culturels</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="feature-icon mb-4 text-primary">
+                                <i class="bi bi-graph-up-arrow fs-1"></i>
+                            </div>
+                            <h3 class="h4">Évolution temporelle</h3>
+                            <p>Analysez comment un hashtag gagne en popularité, atteint son pic et décline au fil du temps avec des graphiques interactifs et intuitifs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="feature-icon mb-4 text-primary">
+                                <i class="bi bi-people-fill fs-1"></i>
+                            </div>
+                            <h3 class="h4">Analyse d'engagement</h3>
+                            <p>Mesurez l'engagement généré par le hashtag à travers les likes, retweets et réponses pour évaluer son impact réel sur l'audience.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="feature-icon mb-4 text-primary">
+                                <i class="bi bi-diagram-3-fill fs-1"></i>
+                            </div>
+                            <h3 class="h4">Cartographie des connexions</h3>
+                            <p>Découvrez les hashtags associés et les influenceurs qui amplifient la conversation pour une vision complète de l'écosystème.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h3 class="card-title"><i class="bi bi-diagram-3"></i> Connexions</h3>
-                    <p class="card-text">Découvrez les hashtags associés et les influenceurs qui amplifient la conversation.</p>
+
+        <!-- How it works -->
+        <div class="my-5 py-5">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Comment ça marche</h2>
+                <p class="lead">Trois étapes simples pour analyser vos hashtags culturels</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="steps">
+                        <div class="row mb-5 align-items-center">
+                            <div class="col-md-2 text-center">
+                                <div class="step-number bg-primary text-white rounded-circle d-inline-flex justify-content-center align-items-center fw-bold mb-3" style="width: 60px; height: 60px;">1</div>
+                            </div>
+                            <div class="col-md-10">
+                                <h3>Entrez votre hashtag culturel</h3>
+                                <p>Choisissez un hashtag lié à un événement culturel que vous souhaitez analyser (ex: festival, exposition, événement musical).</p>
+                            </div>
+                        </div>
+
+                        <div class="row mb-5 align-items-center">
+                            <div class="col-md-2 text-center">
+                                <div class="step-number bg-primary text-white rounded-circle d-inline-flex justify-content-center align-items-center fw-bold mb-3" style="width: 60px; height: 60px;">2</div>
+                            </div>
+                            <div class="col-md-10">
+                                <h3>Sélectionnez la période d'analyse</h3>
+                                <p>Définissez une période qui couvre l'avant, le pendant et l'après de l'événement pour une analyse complète du cycle de vie.</p>
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center">
+                            <div class="col-md-2 text-center">
+                                <div class="step-number bg-primary text-white rounded-circle d-inline-flex justify-content-center align-items-center fw-bold mb-3" style="width: 60px; height: 60px;">3</div>
+                            </div>
+                            <div class="col-md-10">
+                                <h3>Explorez les insights visuels</h3>
+                                <p>Découvrez des graphiques interactifs, des tendances d'engagement et des connexions entre hashtags pour comprendre l'impact culturel.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="/analysis" class="btn btn-primary btn-lg">Commencer maintenant</a>
             </div>
         </div>
     </div>
 </section>
 </body>
 </html>
-
