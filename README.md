@@ -53,8 +53,6 @@ HashLife Analytics is a web application designed to analyze the evolution and im
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/abdelhak-zaaim/digital_skills_project_hashlife-analytics.git
-   cd digital_skills_project_hashlife-analytics
    ```
 
 2. Configure your Twitter API credentials:
