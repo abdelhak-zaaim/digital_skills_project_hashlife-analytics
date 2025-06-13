@@ -6,54 +6,87 @@
 </head>
 <body>
 <section>
-    <!-- Page Header -->
+    <!-- Page Header with animated elements -->
     <div class="page-header">
-        <div class="container">
-            <h1 class="display-4 fw-bold" data-aos="fade-right" data-aos-duration="1000">Analyze Cultural Hashtag</h1>
-            <p class="lead" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">Unlock insights into hashtag trends and their impact on cultural events</p>
+        <div class="container position-relative">
+            <!-- Animated shapes in background -->
+            <div class="position-absolute w-100 h-100" style="top: 0; left: 0; z-index: 0;">
+                <div class="position-absolute morph" style="width: 250px; height: 250px; top: -100px; right: -50px; background: rgba(255,255,255,0.1); border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;"></div>
+            </div>
+
+            <h1 class="display-4 fw-bold position-relative" data-aos="fade-right" data-aos-duration="1000">
+                Analyze <span class="text-light text-gradient">Cultural Hashtag</span>
+                <div class="position-absolute" style="width: 50px; height: 50px; top: -20px; right: 20%; z-index: -1;">
+                    <i class="bi bi-hash display-1 text-white opacity-10"></i>
+                </div>
+            </h1>
+            <p class="lead position-relative" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
+                <span class="typewriter">Unlock insights into hashtag trends and their impact on cultural events</span>
+                <span class="position-absolute d-none d-lg-block" style="right: -30px; top: 50%; transform: translateY(-50%);">
+                    <i class="bi bi-lightning-charge-fill text-warning pulse"></i>
+                </span>
+            </p>
         </div>
     </div>
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8" data-aos="fade-up" data-aos-duration="1000">
-                <div class="card shadow border-0 mb-5">
-                    <div class="card-body p-4 p-lg-5">
+                <!-- Main analysis form card with floating animation -->
+                <div class="card shadow border-0 mb-5 hover-lift">
+                    <div class="position-absolute w-100 h-100" style="top: 0; left: 0; z-index: 0; overflow: hidden;">
+                        <div class="expanding-circle" style="top: 20%; left: 20%;"></div>
+                    </div>
+
+                    <div class="card-body p-4 p-lg-5 position-relative">
                         <div class="text-center mb-4">
                             <div class="mb-3">
-                                <span class="badge bg-primary p-3 rounded-circle pulse">
+                                <span class="badge bg-primary p-3 rounded-circle pulse" style="transform-style: preserve-3d;">
                                     <i class="bi bi-search fs-4"></i>
+                                    <span class="position-absolute" style="top: -5px; right: -5px; width: 15px; height: 15px; background-color: #ffc107; border-radius: 50%; transform: translateZ(5px);"></span>
                                 </span>
                             </div>
-                            <h2 class="h3 fw-bold">Enter Hashtag Details</h2>
-                            <p class="text-muted">Provide a cultural hashtag and time period to analyze its lifecycle
-                            </p>
+                            <h2 class="h3 fw-bold" id="form-title">Enter Hashtag Details</h2>
+                            <p class="text-muted">Provide a cultural hashtag and time period to analyze its lifecycle</p>
                         </div>
 
-                        <form action="/analyze" method="post" class="needs-validation" novalidate>
-                            <div class="mb-4">
-                                <label for="hashtag" class="form-label fw-medium">Hashtag to analyze</label>
+                        <form action="/analyze" method="post" class="needs-validation" novalidate id="analysis-form">
+                            <!-- Hashtag input with dynamic animation -->
+                            <div class="mb-4 position-relative">
+                                <label for="hashtag" class="form-label fw-medium d-flex align-items-center">
+                                    Hashtag to analyze
+                                    <div class="ms-2 position-relative" style="cursor: pointer;" data-bs-toggle="tooltip" title="Enter a hashtag without the # symbol">
+                                        <i class="bi bi-question-circle text-primary"></i>
+                                    </div>
+                                </label>
                                 <div class="input-group input-group-lg">
-                                    <span class="input-group-text border-0 bg-light">#</span>
+                                    <span class="input-group-text border-0 bg-light text-primary">#</span>
                                     <input type="text" class="form-control form-control-lg border-0 bg-light"
                                            id="hashtag" name="hashtag"
                                            placeholder="Enter hashtag without #" required>
+                                    <span class="input-group-text border-0 bg-light" id="hashtag-check">
+                                        <i class="bi bi-check-circle-fill text-success d-none"></i>
+                                    </span>
                                 </div>
-                                <div class="form-text mt-2">
+                                <div class="form-text mt-2 d-flex align-items-center">
                                     <i class="bi bi-info-circle-fill me-1 text-primary"></i>
-                                    Examples: <span class="badge rounded-pill bg-light text-primary">cannes2025</span>
-                                    <span class="badge rounded-pill bg-light text-primary">festivalavignon</span>
-                                    <span class="badge rounded-pill bg-light text-primary">artbasel</span>
+                                    Examples:
+                                    <div class="hashtag-examples ms-2 d-flex gap-2 flex-wrap">
+                                        <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill shimmer">cannes2025</span>
+                                        <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill shimmer" style="animation-delay: 0.2s">festivalavignon</span>
+                                        <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill shimmer" style="animation-delay: 0.4s">artbasel</span>
+                                    </div>
                                 </div>
                                 <div class="invalid-feedback">
                                     Please enter a hashtag to analyze
                                 </div>
                             </div>
 
+                            <!-- Date range with interactive calendar -->
                             <div class="row g-3 mb-4">
                                 <div class="col-md-6">
                                     <label for="startDate" class="form-label fw-medium">Start Date</label>
-                                    <div class="input-group has-validation">
+                                    <div class="input-group has-validation calendar-input">
                                         <span class="input-group-text border-0 bg-light">
                                             <i class="bi bi-calendar-event"></i>
                                         </span>
@@ -66,7 +99,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="endDate" class="form-label fw-medium">End Date</label>
-                                    <div class="input-group has-validation">
+                                    <div class="input-group has-validation calendar-input">
                                         <span class="input-group-text border-0 bg-light">
                                             <i class="bi bi-calendar-event"></i>
                                         </span>
@@ -79,40 +112,58 @@
                                 </div>
                             </div>
 
+                            <!-- Date range visualization -->
+                            <div class="date-range-visual mb-4">
+                                <div class="d-flex justify-content-between text-muted small">
+                                    <span id="startDateDisplay">Start: Loading...</span>
+                                    <span id="totalDays">&nbsp;</span>
+                                    <span id="endDateDisplay">End: Loading...</span>
+                                </div>
+                                <div class="progress mt-2" style="height: 8px;">
+                                    <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Best practice info box with animated icon -->
                             <div class="alert alert-info border-0 d-flex align-items-center mb-4 bg-primary bg-opacity-10" role="alert">
-                                <i class="bi bi-info-circle-fill me-3 fs-4 text-primary"></i>
+                                <div class="me-3 rotate">
+                                    <i class="bi bi-info-circle-fill fs-4 text-primary"></i>
+                                </div>
                                 <div>
                                     <strong>Best Practice:</strong> Choose a time period that covers before, during, and
                                     after the cultural event for the most insightful analysis of the hashtag lifecycle.
                                 </div>
                             </div>
 
+                            <!-- Submit button with animation effects -->
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-gradient btn-lg">
-                                    <i class="bi bi-graph-up me-2"></i> Analyze Hashtag
+                                <button type="submit" class="btn btn-gradient btn-lg btn-shine position-relative overflow-hidden">
+                                    <span class="position-relative">
+                                        <i class="bi bi-graph-up me-2"></i> Analyze Hashtag
+                                    </span>
                                     <span class="ms-2 spinner-grow spinner-grow-sm d-none" role="status" aria-hidden="true" id="loadingSpinner"></span>
                                 </button>
-                                <a href="/" class="btn btn-link text-decoration-none">Cancel</a>
+                                <a href="/" class="btn btn-link text-decoration-none hover-lift">Cancel</a>
                             </div>
                         </form>
                     </div>
                 </div>
 
+                <!-- What we analyze card with animated icons -->
                 <div class="card border-0 bg-light shadow-sm" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                     <div class="card-body p-4">
                         <h3 class="h5 fw-bold mb-3">What we analyze</h3>
-                        <div class="row g-4">
+                        <div class="row g-4" id="analysis-features">
                             <div class="col-md-4">
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 text-primary">
                                         <div class="rounded-circle bg-primary bg-opacity-10 p-2 d-inline-flex">
-                                            <i class="bi bi-activity fs-4"></i>
+                                            <i class="bi bi-activity fs-4 feature-icon"></i>
                                         </div>
                                     </div>
                                     <div class="ms-3">
                                         <h4 class="h6 fw-bold">Tweet Volume</h4>
-                                        <p class="small text-muted mb-0">Track how the conversation grows and fades
-                                        </p>
+                                        <p class="small text-muted mb-0">Track how the conversation grows and fades</p>
                                     </div>
                                 </div>
                             </div>
@@ -120,7 +171,7 @@
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 text-primary">
                                         <div class="rounded-circle bg-primary bg-opacity-10 p-2 d-inline-flex">
-                                            <i class="bi bi-heart fs-4"></i>
+                                            <i class="bi bi-heart fs-4 feature-icon"></i>
                                         </div>
                                     </div>
                                     <div class="ms-3">
@@ -133,7 +184,7 @@
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 text-primary">
                                         <div class="rounded-circle bg-primary bg-opacity-10 p-2 d-inline-flex">
-                                            <i class="bi bi-people fs-4"></i>
+                                            <i class="bi bi-people fs-4 feature-icon"></i>
                                         </div>
                                     </div>
                                     <div class="ms-3">
@@ -146,37 +197,97 @@
                     </div>
                 </div>
 
-                <!-- Popular hashtags section -->
+                <!-- Popular hashtags section with interactive hashtags -->
                 <div class="card border-0 shadow-sm mt-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
                     <div class="card-body p-4">
-                        <h3 class="h5 fw-bold mb-3">Popular Cultural Hashtags</h3>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h3 class="h5 fw-bold mb-0">Popular Cultural Hashtags</h3>
+                            <button class="btn btn-sm btn-outline-primary rounded-pill px-3" id="refreshHashtags">
+                                <i class="bi bi-arrow-repeat"></i> Refresh
+                            </button>
+                        </div>
                         <p class="text-muted small">Trending hashtags from cultural events you might want to analyze:</p>
 
-                        <div class="d-flex flex-wrap gap-2 mt-3">
-                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill">#cannesfestival</span>
-                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill">#festivalavignon</span>
-                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill">#artbasel</span>
-                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill">#metgala2025</span>
-                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill">#berlinale</span>
-                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill">#sundancefestival</span>
-                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill">#biennalearte</span>
-                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill">#tribeca2025</span>
+                        <div class="d-flex flex-wrap gap-2 mt-3 hashtag-cloud">
+                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill hover-lift">#cannesfestival</span>
+                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill hover-lift">#festivalavignon</span>
+                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill hover-lift">#artbasel</span>
+                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill hover-lift">#metgala2025</span>
+                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill hover-lift">#berlinale</span>
+                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill hover-lift">#sundancefestival</span>
+                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill hover-lift">#biennalearte</span>
+                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill hover-lift">#tribeca2025</span>
+                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill hover-lift">#nuitblanche</span>
+                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill hover-lift">#documenta</span>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div
+
+    <!-- Hidden success toast notification -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="successToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-success text-white">
+                <i class="bi bi-check-circle me-2"></i>
+                <strong class="me-auto">Success</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Your analysis request has been submitted. Analyzing data...
             </div>
         </div>
     </div>
 </section>
 
 <script>
-// Client-side validation
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize tooltips
+    const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    tooltips.forEach(tooltip => {
+        new bootstrap.Tooltip(tooltip);
+    });
+
+    // Set up GSAP animations for form title
+    if (window.gsap) {
+        const formTitle = document.getElementById('form-title');
+        if (formTitle) {
+            gsap.to(formTitle, {
+                y: -5,
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+        }
+
+        // Animate feature icons
+        const featureIcons = document.querySelectorAll('.feature-icon');
+        featureIcons.forEach((icon, index) => {
+            gsap.to(icon, {
+                rotateY: 360,
+                duration: 3,
+                repeat: -1,
+                ease: "power1.inOut",
+                delay: index * 0.3
+            });
+        });
+    }
+
+    // Form validation and animation
     const form = document.querySelector('.needs-validation');
     const startDateInput = document.getElementById('startDate');
     const endDateInput = document.getElementById('endDate');
     const hashtagInput = document.getElementById('hashtag');
     const loadingSpinner = document.getElementById('loadingSpinner');
+    const hashtagCheck = document.getElementById('hashtag-check').querySelector('i');
+    const successToast = document.getElementById('successToast');
+
+    // Update date displays
+    const startDateDisplay = document.getElementById('startDateDisplay');
+    const endDateDisplay = document.getElementById('endDateDisplay');
+    const totalDays = document.getElementById('totalDays');
 
     // Set default dates (last week to today)
     const today = new Date();
@@ -186,18 +297,88 @@ document.addEventListener('DOMContentLoaded', function() {
     startDateInput.value = lastWeek.toISOString().split('T')[0];
     endDateInput.value = today.toISOString().split('T')[0];
 
-    // Focus and add animation on hashtag field
+    // Update date display
+    function updateDateDisplay() {
+        const startDate = new Date(startDateInput.value);
+        const endDate = new Date(endDateInput.value);
+        const diffTime = Math.abs(endDate - startDate);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // +1 to include both start and end days
+
+        startDateDisplay.textContent = `Start: ${startDate.toLocaleDateString()}`;
+        endDateDisplay.textContent = `End: ${endDate.toLocaleDateString()}`;
+        totalDays.textContent = `${diffDays} days`;
+    }
+
+    updateDateDisplay();
+    startDateInput.addEventListener('change', updateDateDisplay);
+    endDateInput.addEventListener('change', updateDateDisplay);
+
+    // Focus animation on hashtag field
     setTimeout(() => {
         hashtagInput.focus();
+
+        // Add floating animation to the hashtag field
+        if (window.gsap) {
+            const hashtagField = hashtagInput.closest('.input-group');
+            gsap.to(hashtagField, {
+                y: -5,
+                duration: 1,
+                repeat: 1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+        }
     }, 500);
+
+    // Validate hashtag as user types
+    hashtagInput.addEventListener('input', function() {
+        if (this.value.length > 2) {
+            hashtagCheck.classList.remove('d-none');
+            // Add animation
+            hashtagCheck.classList.add('tada');
+            setTimeout(() => {
+                hashtagCheck.classList.remove('tada');
+            }, 1000);
+        } else {
+            hashtagCheck.classList.add('d-none');
+        }
+    });
 
     form.addEventListener('submit', function(event) {
         if (!form.checkValidity()) {
             event.preventDefault();
             event.stopPropagation();
+
+            // Shake invalid fields
+            const invalidInputs = form.querySelectorAll(':invalid');
+            invalidInputs.forEach(input => {
+                if (window.gsap) {
+                    gsap.to(input, {
+                        x: 10,
+                        duration: 0.1,
+                        repeat: 5,
+                        yoyo: true
+                    });
+                }
+            });
         } else {
             // Show loading spinner
             loadingSpinner.classList.remove('d-none');
+
+            // Show success notification
+            if (successToast) {
+                const toast = new bootstrap.Toast(successToast);
+                toast.show();
+            }
+
+            // Trigger confetti animation for successful submission
+            if (window.confetti) {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
         }
 
         // Check that end date is after start date
@@ -211,10 +392,10 @@ document.addEventListener('DOMContentLoaded', function() {
             toastContainer.style.zIndex = '9999';
             toastContainer.innerHTML = `
                 <div class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header">
+                    <div class="toast-header bg-danger text-white">
                         <i class="bi bi-exclamation-circle me-2"></i>
                         <strong class="me-auto">Date Error</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                     <div class="toast-body">
                         End date must be after start date
@@ -223,10 +404,24 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             document.body.appendChild(toastContainer);
 
-            const toast = new bootstrap.Toast(document.querySelector('.toast'));
+            const toast = new bootstrap.Toast(toastContainer.querySelector('.toast'));
             toast.show();
 
             event.preventDefault();
+
+            // Highlight date fields with error
+            startDateInput.classList.add('is-invalid');
+            endDateInput.classList.add('is-invalid');
+
+            // Shake the date inputs
+            if (window.gsap) {
+                gsap.to([startDateInput, endDateInput], {
+                    x: 10,
+                    duration: 0.1,
+                    repeat: 5,
+                    yoyo: true
+                });
+            }
         }
 
         form.classList.add('was-validated');
@@ -236,12 +431,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const formControls = document.querySelectorAll('.form-control');
     formControls.forEach(control => {
         control.addEventListener('focus', function() {
-            this.closest('.input-group').style.boxShadow = '0 0 0 0.25rem rgba(67, 97, 238, 0.15)';
-            this.closest('.input-group').style.transition = 'box-shadow 0.2s ease-in-out';
+            this.closest('.input-group').classList.add('glow');
         });
 
         control.addEventListener('blur', function() {
-            this.closest('.input-group').style.boxShadow = 'none';
+            this.closest('.input-group').classList.remove('glow');
         });
     });
 
@@ -259,8 +453,69 @@ document.addEventListener('DOMContentLoaded', function() {
                 hashtagInput.style.backgroundColor = '';
                 hashtagInput.style.transition = 'background-color 0.5s ease';
             }, 300);
+
+            // Show checkmark
+            hashtagCheck.classList.remove('d-none');
+
+            // Add animation
+            if (window.gsap) {
+                gsap.from(hashtagCheck, {
+                    scale: 0,
+                    duration: 0.5,
+                    ease: "back.out(1.7)"
+                });
+            }
+
+            // Validate form
+            form.classList.add('was-validated');
         });
     });
+
+    // Animate calendar inputs on hover
+    const calendarInputs = document.querySelectorAll('.calendar-input');
+    calendarInputs.forEach(input => {
+        input.addEventListener('mouseenter', function() {
+            const icon = this.querySelector('i');
+            if (window.gsap) {
+                gsap.to(icon, {
+                    rotate: 15,
+                    duration: 0.2,
+                    yoyo: true,
+                    repeat: 1
+                });
+            }
+        });
+    });
+
+    // Refresh hashtags button animation
+    const refreshButton = document.getElementById('refreshHashtags');
+    if (refreshButton) {
+        refreshButton.addEventListener('click', function() {
+            // Rotate the refresh icon
+            const icon = this.querySelector('i');
+            if (window.gsap) {
+                gsap.to(icon, {
+                    rotation: 360,
+                    duration: 0.5,
+                    ease: "power1.inOut"
+                });
+            }
+
+            // Animation for hashtag pills
+            const pills = document.querySelectorAll('.hashtag-cloud .hashtag-pill');
+            pills.forEach((pill, index) => {
+                if (window.gsap) {
+                    gsap.from(pill, {
+                        scale: 0,
+                        opacity: 0,
+                        duration: 0.5,
+                        delay: index * 0.05,
+                        ease: "back.out(1.7)"
+                    });
+                }
+            });
+        });
+    }
 });
 </script>
 </body>

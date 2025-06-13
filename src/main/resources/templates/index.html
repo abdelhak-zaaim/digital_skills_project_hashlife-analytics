@@ -6,123 +6,163 @@
 </head>
 <body>
 <section>
-    <!-- Hero Section with animated elements -->
-    <div class="page-header text-center">
-        <div class="container py-5">
-            <h1 class="display-3 fw-bold mb-3" data-aos="fade-down" data-aos-duration="1000">
-                Hash<span class="text-light">Life</span> <span class="text-light">Analytics</span>
+    <!-- Hero Section with advanced animations -->
+    <div class="page-header text-center animated-gradient">
+        <!-- Animated Shapes -->
+        <div class="position-absolute w-100 h-100" style="top: 0; left: 0; z-index: 0; overflow: hidden">
+            <div class="position-absolute morph" style="width: 300px; height: 300px; top: -100px; right: -50px; background: rgba(255,255,255,0.1); border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;"></div>
+            <div class="position-absolute morph" style="width: 200px; height: 200px; bottom: -50px; left: -50px; background: rgba(255,255,255,0.1); border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; animation-delay: 2s"></div>
+        </div>
+
+        <div class="container py-5 position-relative">
+            <h1 class="display-2 fw-bold mb-3" id="animated-heading">
+                <span class="text-gradient">Hash</span>Life <span class="text-light">Analytics</span>
             </h1>
-            <p class="lead col-md-8 mx-auto" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+            <p class="lead col-md-8 mx-auto typewriter" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
                 Discover how cultural hashtags evolve, engage, and influence conversations on social media platforms.
             </p>
-            <div class="mt-5" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="400">
-                <a href="/analysis" class="btn btn-light btn-lg shadow px-5 pulse">
+            <div class="mt-5" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="600">
+                <a href="/analysis" class="btn btn-light btn-lg shadow px-5 pulse btn-shine">
                     Start Analyzing <i class="bi bi-arrow-right"></i>
                 </a>
             </div>
-            <div class="position-relative mt-4">
-                <div class="floating-hashtags d-none d-lg-block">
-                    <span class="badge bg-white text-primary opacity-75 position-absolute" style="top: -60px; left: 20%">#culture</span>
-                    <span class="badge bg-white text-primary opacity-50 position-absolute" style="top: 10px; left: 65%">#trending</span>
-                    <span class="badge bg-white text-primary opacity-60 position-absolute" style="top: -30px; left: 80%">#analytics</span>
-                    <span class="badge bg-white text-primary opacity-40 position-absolute" style="top: 5px; left: 30%">#insights</span>
-                    <span class="badge bg-white text-primary opacity-70 position-absolute" style="top: -80px; left: 50%">#social</span>
+            <div class="position-relative mt-5">
+                <div class="d-none d-lg-block">
+                    <!-- Floating hashtags with random animation -->
+                    <span class="badge bg-white text-primary opacity-75 position-absolute float" style="top: -60px; left: 20%">#culture</span>
+                    <span class="badge bg-white text-primary opacity-50 position-absolute float" style="top: 10px; left: 65%; animation-delay: 0.5s">#trending</span>
+                    <span class="badge bg-white text-primary opacity-60 position-absolute float" style="top: -30px; left: 80%; animation-delay: 1s">#analytics</span>
+                    <span class="badge bg-white text-primary opacity-40 position-absolute float" style="top: 5px; left: 30%; animation-delay: 1.5s">#insights</span>
+                    <span class="badge bg-white text-primary opacity-70 position-absolute float" style="top: -80px; left: 50%; animation-delay: 2s">#social</span>
+                </div>
+            </div>
+
+            <!-- Animated Mouse Scroll Indicator -->
+            <div class="mouse-scroll-indicator position-absolute" style="bottom: 30px; left: 50%; transform: translateX(-50%);">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <div>
+                    <span class="small text-white-50">Scroll down</span>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="container">
-        <!-- Introduction with animated elements -->
-        <div class="row align-items-center my-5 py-3">
+        <!-- Introduction with advanced animations -->
+        <div class="row align-items-center my-5 py-5">
             <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
-                <h2 class="fw-bold mb-4">Analyse de l'évolution d'un hashtag culturel</h2>
-                <p class="lead">Explorez le cycle de vie des hashtags liés à des événements culturels sur X (ex-Twitter).</p>
-                <p>Notre outil vous permet de suivre l'évolution d'un hashtag culturel dans le temps, d'analyser son engagement
+                <span class="badge bg-primary text-white px-3 py-2 mb-3">Notre vision</span>
+                <h2 class="fw-bold mb-4 display-5 reveal-text">Analyse de l'évolution d'un hashtag culturel</h2>
+                <p class="lead" data-splitting>Explorez le cycle de vie des hashtags liés à des événements culturels sur X (ex-Twitter).</p>
+                <p class="stagger-item">Notre outil vous permet de suivre l'évolution d'un hashtag culturel dans le temps, d'analyser son engagement
                    et de découvrir les tendances associées pour comprendre l'impact des événements culturels sur les réseaux sociaux.</p>
-                <div class="mt-4 d-flex gap-3">
-                    <a href="/analysis" class="btn btn-gradient">Commencer l'analyse</a>
-                    <a href="#features" class="btn btn-outline-primary">En savoir plus</a>
+                <div class="mt-4 d-flex gap-3 stagger-item">
+                    <a href="/analysis" class="btn btn-gradient btn-shine">Commencer l'analyse</a>
+                    <a href="#features" class="btn btn-outline-primary hover-lift">En savoir plus</a>
                 </div>
             </div>
             <div class="col-lg-6 mt-4 mt-lg-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                <div class="position-relative tilt-card">
-                    <div class="card shadow-lg border-0">
-                        <div class="card-body text-center p-5">
-                            <div class="p-3 rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-                                <i class="bi bi-hash display-5 text-primary"></i>
+                <div class="position-relative card-3d">
+                    <div class="card-3d-inner">
+                        <div class="card-3d-front">
+                            <div class="card shadow-lg border-0 hover-lift">
+                                <div class="card-body text-center p-5">
+                                    <div class="p-3 rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3 rotate-slow" style="width: 80px; height: 80px;">
+                                        <i class="bi bi-hash display-5 text-primary"></i>
+                                    </div>
+                                    <h2 class="mt-3">Visualiser l'impact culturel</h2>
+                                    <p>Transformez des données en insights visuels qui racontent l'histoire d'un événement culturel à travers ses hashtags.</p>
+                                </div>
                             </div>
-                            <h2 class="mt-3">Visualiser l'impact culturel</h2>
-                            <p>Transformez des données en insights visuels qui racontent l'histoire d'un événement culturel à travers ses hashtags.</p>
+                        </div>
+                        <div class="card-3d-back">
+                            <div class="card shadow-lg border-0">
+                                <div class="card-body text-center p-5 bg-primary text-white">
+                                    <div class="p-3 rounded-circle bg-white d-inline-flex align-items-center justify-content-center mb-3">
+                                        <i class="bi bi-graph-up-arrow display-5 text-primary"></i>
+                                    </div>
+                                    <h2 class="mt-3">Découvrir des tendances cachées</h2>
+                                    <p>Nos algorithmes d'analyse révèlent les tendances et modèles d'engagement que les méthodes traditionnelles ne peuvent pas identifier.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="position-absolute" style="top: -15px; right: -15px; z-index: -1;">
-                        <div class="rounded-circle bg-accent-color" style="width: 100px; height: 100px; opacity: 0.2;"></div>
-                    </div>
+                    <div class="expanding-circle" style="top: 50%; left: 50%;"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Visual divider -->
-        <div class="text-center my-5">
+        <!-- Visual divider with animation -->
+        <div class="text-center my-5 py-3">
             <div class="d-inline-flex align-items-center justify-content-center">
-                <div class="bg-primary" style="height: 2px; width: 80px;"></div>
-                <i class="bi bi-hash mx-3 fs-4 text-primary"></i>
-                <div class="bg-primary" style="height: 2px; width: 80px;"></div>
+                <div class="bg-primary shimmer" style="height: 2px; width: 80px;"></div>
+                <i class="bi bi-hash mx-3 fs-4 text-primary pulse"></i>
+                <div class="bg-primary shimmer" style="height: 2px; width: 80px;"></div>
             </div>
         </div>
 
-        <!-- Features with animation effects -->
+        <!-- Features with advanced animations -->
         <div id="features" class="my-5 pt-5">
             <div class="text-center mb-5" data-aos="fade-up" data-aos-duration="1000">
                 <span class="badge bg-primary text-light px-3 py-2 mb-3">Fonctionnalités</span>
-                <h2 class="fw-bold display-5">Fonctionnalités clés</h2>
+                <h2 class="fw-bold display-5 text-gradient">Fonctionnalités clés</h2>
                 <p class="lead col-lg-8 mx-auto">Tout ce dont vous avez besoin pour analyser les hashtags culturels et comprendre leur impact</p>
             </div>
 
-            <div class="row g-4">
-                <div class="col-md-4" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="card h-100 border-0 shadow-sm">
+            <div class="row g-4 stagger-children animate">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm hover-lift">
                         <div class="card-body p-4 p-xl-5">
                             <div class="mb-4 p-3 rounded-circle bg-primary bg-opacity-10 d-inline-flex">
                                 <i class="bi bi-graph-up-arrow fs-1 text-primary"></i>
                             </div>
                             <h3 class="h4 fw-bold">Évolution temporelle</h3>
+                            <div class="progress my-3" style="height: 4px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%;" data-width="85%"></div>
+                            </div>
                             <p class="text-muted">Analysez comment un hashtag gagne en popularité, atteint son pic et décline au fil du temps avec des graphiques interactifs et intuitifs.</p>
                             <hr class="my-3 opacity-25">
-                            <div class="d-flex align-items-center text-primary">
+                            <div class="d-flex align-items-center text-primary btn-shine">
                                 <small class="fw-medium">Explorer</small>
                                 <i class="bi bi-arrow-right ms-2"></i>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                    <div class="card h-100 border-0 shadow-sm">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm hover-lift">
                         <div class="card-body p-4 p-xl-5">
                             <div class="mb-4 p-3 rounded-circle bg-primary bg-opacity-10 d-inline-flex">
                                 <i class="bi bi-people-fill fs-1 text-primary"></i>
                             </div>
                             <h3 class="h4 fw-bold">Analyse d'engagement</h3>
+                            <div class="progress my-3" style="height: 4px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%;" data-width="75%"></div>
+                            </div>
                             <p class="text-muted">Mesurez l'engagement généré par le hashtag à travers les likes, retweets et réponses pour évaluer son impact réel sur l'audience.</p>
                             <hr class="my-3 opacity-25">
-                            <div class="d-flex align-items-center text-primary">
+                            <div class="d-flex align-items-center text-primary btn-shine">
                                 <small class="fw-medium">Explorer</small>
                                 <i class="bi bi-arrow-right ms-2"></i>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                    <div class="card h-100 border-0 shadow-sm">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm hover-lift">
                         <div class="card-body p-4 p-xl-5">
                             <div class="mb-4 p-3 rounded-circle bg-primary bg-opacity-10 d-inline-flex">
                                 <i class="bi bi-diagram-3-fill fs-1 text-primary"></i>
                             </div>
                             <h3 class="h4 fw-bold">Cartographie des connexions</h3>
+                            <div class="progress my-3" style="height: 4px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%;" data-width="90%"></div>
+                            </div>
                             <p class="text-muted">Découvrez les hashtags associés et les influenceurs qui amplifient la conversation pour une vision complète de l'écosystème.</p>
                             <hr class="my-3 opacity-25">
-                            <div class="d-flex align-items-center text-primary">
+                            <div class="d-flex align-items-center text-primary btn-shine">
                                 <small class="fw-medium">Explorer</small>
                                 <i class="bi bi-arrow-right ms-2"></i>
                             </div>
@@ -132,8 +172,13 @@
             </div>
         </div>
 
-        <!-- How it works - Enhanced with timeline -->
-        <div class="my-5 py-5">
+        <!-- How it works - Enhanced with advanced timeline animations -->
+        <div class="my-5 py-5 position-relative">
+            <!-- Background particles for this section -->
+            <div class="position-absolute w-100 h-100" style="top: 0; left: 0; z-index: -1; opacity: 0.3;">
+                <canvas id="connections-bg"></canvas>
+            </div>
+
             <div class="text-center mb-5" data-aos="fade-up" data-aos-duration="1000">
                 <span class="badge bg-primary text-light px-3 py-2 mb-3">Processus</span>
                 <h2 class="fw-bold display-5">Comment ça marche</h2>
@@ -141,16 +186,18 @@
             </div>
 
             <div class="row position-relative">
-                <!-- Timeline connector -->
-                <div class="position-absolute d-none d-lg-block" style="left: 50%; width: 2px; top: 0; bottom: 10%; background-color: #e9ecef; z-index: 0;"></div>
+                <!-- Timeline connector with animation -->
+                <div class="position-absolute d-none d-lg-block" style="left: 50%; width: 2px; top: 0; bottom: 10%; background-color: #e9ecef; z-index: 0;">
+                    <div class="timeline-progress" style="width: 100%; background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end)); height: 0%; transition: height 1.5s ease;"></div>
+                </div>
 
                 <!-- Step 1 -->
                 <div class="col-lg-6 text-end mb-5" data-aos="fade-right" data-aos-duration="1000">
-                    <div class="card border-0 shadow-sm">
+                    <div class="card border-0 shadow-sm hover-lift timeline-card" data-step="1">
                         <div class="card-body p-4">
                             <div class="d-flex align-items-center justify-content-end mb-3">
                                 <h4 class="fw-bold mb-0 me-3">Sélectionnez un hashtag</h4>
-                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center pulse" style="width: 48px; height: 48px;">
                                     <span class="fw-bold">1</span>
                                 </div>
                             </div>
@@ -163,10 +210,10 @@
                 <!-- Step 2 -->
                 <div class="col-lg-6 mb-5"></div>
                 <div class="col-lg-6 text-start mb-5" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                    <div class="card border-0 shadow-sm">
+                    <div class="card border-0 shadow-sm hover-lift timeline-card" data-step="2">
                         <div class="card-body p-4">
                             <div class="d-flex align-items-center mb-3">
-                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center pulse" style="width: 48px; height: 48px; animation-delay: 0.5s;">
                                     <span class="fw-bold">2</span>
                                 </div>
                                 <h4 class="fw-bold mb-0 ms-3">Analysez les données</h4>
@@ -178,11 +225,11 @@
 
                 <!-- Step 3 -->
                 <div class="col-lg-6 text-end" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="400">
-                    <div class="card border-0 shadow-sm">
+                    <div class="card border-0 shadow-sm hover-lift timeline-card" data-step="3">
                         <div class="card-body p-4">
                             <div class="d-flex align-items-center justify-content-end mb-3">
                                 <h4 class="fw-bold mb-0 me-3">Découvrez des insights</h4>
-                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center pulse" style="width: 48px; height: 48px; animation-delay: 1s">
                                     <span class="fw-bold">3</span>
                                 </div>
                             </div>
@@ -194,106 +241,263 @@
             </div>
         </div>
 
-        <!-- Testimonials/Use Cases Section -->
-        <div class="my-5 py-5 bg-light rounded-4 p-3 p-md-5">
+        <!-- Testimonials with advanced animations -->
+        <div class="my-5 py-5 bg-light rounded-4 p-3 p-md-5 position-relative overflow-hidden">
+            <!-- Background animated gradient -->
+            <div class="position-absolute top-0 start-0 end-0 bottom-0 opacity-25 animated-gradient" style="filter: blur(50px); z-index: -1;"></div>
+
             <div class="text-center mb-5" data-aos="fade-up" data-aos-duration="1000">
                 <span class="badge bg-primary text-light px-3 py-2 mb-3">Témoignages</span>
                 <h2 class="fw-bold display-5">Ce que disent nos utilisateurs</h2>
                 <p class="lead col-lg-8 mx-auto">Découvrez comment HashLife Analytics aide à comprendre les phénomènes culturels</p>
             </div>
 
-            <div class="row g-4 justify-content-center">
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="card border-0 h-100">
-                        <div class="card-body p-4">
-                            <div class="mb-3 text-warning">
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-                            <p class="mb-4 fst-italic">"Cet outil nous a permis de comprendre comment notre festival a été perçu sur les réseaux sociaux et d'identifier les moments forts pour notre communication future."</p>
-                            <div class="d-flex align-items-center">
-                                <div class="rounded-circle bg-primary bg-opacity-10 p-2">
-                                    <i class="bi bi-person text-primary"></i>
+            <!-- Testimonial Carousel -->
+            <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row g-4 justify-content-center">
+                            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="1000">
+                                <div class="card border-0 h-100 hover-lift">
+                                    <div class="card-body p-4">
+                                        <div class="mb-3 text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                        </div>
+                                        <p class="mb-4 fst-italic">"Cet outil nous a permis de comprendre comment notre festival a été perçu sur les réseaux sociaux et d'identifier les moments forts pour notre communication future."</p>
+                                        <div class="d-flex align-items-center">
+                                            <div class="rounded-circle bg-primary bg-opacity-10 p-2">
+                                                <i class="bi bi-person text-primary"></i>
+                                            </div>
+                                            <div class="ms-3">
+                                                <h6 class="mb-0 fw-bold">Marie Dupont</h6>
+                                                <small class="text-muted">Directrice Marketing, Festival d'Avignon</small>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="ms-3">
-                                    <h6 class="mb-0 fw-bold">Marie Dupont</h6>
-                                    <small class="text-muted">Directrice Marketing, Festival d'Avignon</small>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                                <div class="card border-0 h-100 hover-lift">
+                                    <div class="card-body p-4">
+                                        <div class="mb-3 text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-half"></i>
+                                        </div>
+                                        <p class="mb-4 fst-italic">"Les analyses d'HashLife nous ont fourni des données précieuses pour notre recherche sur l'impact des hashtags dans la diffusion des mouvements culturels."</p>
+                                        <div class="d-flex align-items-center">
+                                            <div class="rounded-circle bg-primary bg-opacity-10 p-2">
+                                                <i class="bi bi-person text-primary"></i>
+                                            </div>
+                                            <div class="ms-3">
+                                                <h6 class="mb-0 fw-bold">Prof. Jean Martin</h6>
+                                                <small class="text-muted">Université de Paris-Sorbonne</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                                <div class="card border-0 h-100 hover-lift">
+                                    <div class="card-body p-4">
+                                        <div class="mb-3 text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                        </div>
+                                        <p class="mb-4 fst-italic">"Une interface intuitive et des visualisations claires qui transforment des données complexes en insights actionnables pour notre stratégie digitale."</p>
+                                        <div class="d-flex align-items-center">
+                                            <div class="rounded-circle bg-primary bg-opacity-10 p-2">
+                                                <i class="bi bi-person text-primary"></i>
+                                            </div>
+                                            <div class="ms-3">
+                                                <h6 class="mb-0 fw-bold">Sophie Lefèvre</h6>
+                                                <small class="text-muted">Social Media Manager, Musée d'Orsay</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row g-4 justify-content-center">
+                            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="1000">
+                                <div class="card border-0 h-100 hover-lift">
+                                    <div class="card-body p-4">
+                                        <div class="mb-3 text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                        </div>
+                                        <p class="mb-4 fst-italic">"Un outil indispensable pour comprendre l'impact de nos campagnes culturelles. Nous avons pu identifier les influenceurs clés qui ont amplifié notre message."</p>
+                                        <div class="d-flex align-items-center">
+                                            <div class="rounded-circle bg-primary bg-opacity-10 p-2">
+                                                <i class="bi bi-person text-primary"></i>
+                                            </div>
+                                            <div class="ms-3">
+                                                <h6 class="mb-0 fw-bold">Philippe Laurent</h6>
+                                                <small class="text-muted">Directeur Communication, Centre Pompidou</small>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="d-flex justify-content-center mt-4">
+                    <button class="btn btn-sm mx-2 btn-primary rounded-circle" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev" style="width: 40px; height: 40px;">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+                    <button class="btn btn-sm mx-2 btn-primary rounded-circle" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next" style="width: 40px; height: 40px;">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
 
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                    <div class="card border-0 h-100">
-                        <div class="card-body p-4">
-                            <div class="mb-3 text-warning">
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-half"></i>
-                            </div>
-                            <p class="mb-4 fst-italic">"Les analyses d'HashLife nous ont fourni des données précieuses pour notre recherche sur l'impact des hashtags dans la diffusion des mouvements culturels."</p>
-                            <div class="d-flex align-items-center">
-                                <div class="rounded-circle bg-primary bg-opacity-10 p-2">
-                                    <i class="bi bi-person text-primary"></i>
-                                </div>
-                                <div class="ms-3">
-                                    <h6 class="mb-0 fw-bold">Prof. Jean Martin</h6>
-                                    <small class="text-muted">Université de Paris-Sorbonne</small>
-                                </div>
-                            </div>
+        <!-- Stats counter section with dynamic animations -->
+        <div class="py-5 my-5 text-center">
+            <div class="row g-4">
+                <div class="col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="position-relative">
+                        <div class="display-4 fw-bold counter" data-target="1250000">0</div>
+                        <div class="position-absolute top-0 start-0 end-0 bottom-0 d-flex align-items-center justify-content-center opacity-10">
+                            <i class="bi bi-hash display-1 text-primary"></i>
                         </div>
+                        <h5 class="text-uppercase">Hashtags Analyzed</h5>
                     </div>
                 </div>
-
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                    <div class="card border-0 h-100">
-                        <div class="card-body p-4">
-                            <div class="mb-3 text-warning">
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-                            <p class="mb-4 fst-italic">"Une interface intuitive et des visualisations claires qui transforment des données complexes en insights actionnables pour notre stratégie digitale."</p>
-                            <div class="d-flex align-items-center">
-                                <div class="rounded-circle bg-primary bg-opacity-10 p-2">
-                                    <i class="bi bi-person text-primary"></i>
-                                </div>
-                                <div class="ms-3">
-                                    <h6 class="mb-0 fw-bold">Sophie Lefèvre</h6>
-                                    <small class="text-muted">Social Media Manager, Musée d'Orsay</small>
-                                </div>
-                            </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="position-relative">
+                        <div class="display-4 fw-bold counter" data-target="3500">0</div>
+                        <div class="position-absolute top-0 start-0 end-0 bottom-0 d-flex align-items-center justify-content-center opacity-10">
+                            <i class="bi bi-people display-1 text-primary"></i>
                         </div>
+                        <h5 class="text-uppercase">Cultural Events</h5>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <div class="position-relative">
+                        <div class="display-4 fw-bold counter" data-target="950">0</div>
+                        <div class="position-absolute top-0 start-0 end-0 bottom-0 d-flex align-items-center justify-content-center opacity-10">
+                            <i class="bi bi-buildings display-1 text-primary"></i>
+                        </div>
+                        <h5 class="text-uppercase">Organizations</h5>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                    <div class="position-relative">
+                        <div class="display-4 fw-bold counter" data-target="24">0</div>
+                        <div class="position-absolute top-0 start-0 end-0 bottom-0 d-flex align-items-center justify-content-center opacity-10">
+                            <i class="bi bi-globe display-1 text-primary"></i>
+                        </div>
+                        <h5 class="text-uppercase">Countries</h5>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Call to action -->
-        <div class="my-5 py-5 text-center" data-aos="fade-up" data-aos-duration="1000">
+        <!-- Call to action with confetti animation -->
+        <div class="my-5 py-5 text-center position-relative" id="cta-section" data-aos="fade-up" data-aos-duration="1000">
             <div class="col-lg-8 mx-auto">
-                <h2 class="display-5 fw-bold mb-4">Prêt à explorer l'impact des hashtags culturels ?</h2>
+                <h2 class="display-5 fw-bold mb-4 text-gradient">Prêt à explorer l'impact des hashtags culturels ?</h2>
                 <p class="lead mb-5">Commencez dès maintenant à analyser l'évolution et l'impact des hashtags sur les événements culturels.</p>
-                <a href="/analysis" class="btn btn-gradient btn-lg pulse px-5 py-3">
+                <a href="/analysis" class="btn btn-gradient btn-lg pulse btn-shine px-5 py-3" id="cta-button">
                     <i class="bi bi-search me-2"></i> Commencer votre analyse
                 </a>
             </div>
+            <!-- Hidden canvas for confetti -->
+            <canvas id="confetti-canvas" class="position-absolute top-0 start-0 w-100 h-100" style="pointer-events: none; z-index: 1;"></canvas>
         </div>
     </div>
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/splitting@1.0.6/dist/splitting.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Add 3D tilt effect to cards with class tilt-card
-    const tiltCards = document.querySelectorAll('.tilt-card');
+    // Initialize text splitting for animated typography
+    Splitting();
+
+    // Set up GSAP animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Animate heading with GSAP
+    const heading = document.getElementById('animated-heading');
+    if (heading) {
+        gsap.from(heading.children, {
+            duration: 1,
+            y: 100,
+            opacity: 0,
+            stagger: 0.2,
+            ease: "back.out(1.7)",
+            delay: 0.5
+        });
+    }
+
+    // Animated timeline progress
+    const timelineProgress = document.querySelector('.timeline-progress');
+    if (timelineProgress) {
+        ScrollTrigger.create({
+            trigger: '.timeline-progress',
+            start: 'top 80%',
+            end: 'bottom 20%',
+            onEnter: () => {
+                timelineProgress.style.height = '100%';
+            },
+            onLeaveBack: () => {
+                timelineProgress.style.height = '0%';
+            }
+        });
+    }
+
+    // Animate progress bars
+    const progressBars = document.querySelectorAll('.progress-bar');
+    progressBars.forEach(bar => {
+        const targetWidth = bar.dataset.width;
+
+        ScrollTrigger.create({
+            trigger: bar,
+            start: "top 80%",
+            onEnter: () => {
+                bar.style.width = targetWidth;
+                bar.style.transition = "width 1.5s ease";
+            },
+            onLeaveBack: () => {
+                bar.style.width = "0%";
+            }
+        });
+    });
+
+    // Stagger children animation
+    const staggerChildren = document.querySelectorAll('.stagger-children');
+    staggerChildren.forEach(container => {
+        ScrollTrigger.create({
+            trigger: container,
+            start: "top 80%",
+            onEnter: () => {
+                container.classList.add('animate');
+            }
+        });
+    });
+
+    // 3D tilt effect to cards with class tilt-card
+    const tiltCards = document.querySelectorAll('.card-3d');
     tiltCards.forEach(card => {
         card.addEventListener('mousemove', function(e) {
             const rect = card.getBoundingClientRect();
@@ -306,16 +510,26 @@ document.addEventListener('DOMContentLoaded', function() {
             const xPos = (x - centerX) / centerX;
             const yPos = (y - centerY) / centerY;
 
-            card.querySelector('.card').style.transform = `perspective(1000px) rotateY(${xPos * 5}deg) rotateX(${-yPos * 5}deg) scale3d(1.02, 1.02, 1.02)`;
+            gsap.to(card.querySelector('.card-3d-inner'), {
+                rotationY: xPos * 10,
+                rotationX: -yPos * 10,
+                duration: 0.5,
+                ease: "power1.out"
+            });
         });
 
         card.addEventListener('mouseleave', function() {
-            card.querySelector('.card').style.transform = 'perspective(1000px) rotateY(0) rotateX(0) scale3d(1, 1, 1)';
+            gsap.to(card.querySelector('.card-3d-inner'), {
+                rotationY: 0,
+                rotationX: 0,
+                duration: 0.5,
+                ease: "power1.out"
+            });
         });
     });
 
     // Animate floating hashtags randomly
-    const floatingTags = document.querySelectorAll('.floating-hashtags span');
+    const floatingTags = document.querySelectorAll('.float');
     floatingTags.forEach(tag => {
         setInterval(() => {
             const randomX = Math.random() * 15 - 7.5;
@@ -323,6 +537,164 @@ document.addEventListener('DOMContentLoaded', function() {
             tag.style.transform = `translate(${randomX}px, ${randomY}px)`;
             tag.style.transition = 'transform 3s ease-in-out';
         }, 3000);
+    });
+
+    // Network connections background animation
+    const canvas = document.getElementById('connections-bg');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.parentElement.offsetWidth;
+        canvas.height = canvas.parentElement.offsetHeight;
+
+        const particles = [];
+        const particleCount = 50;
+
+        // Create particles
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: Math.random() * 0.5 - 0.25,
+                vy: Math.random() * 0.5 - 0.25,
+                size: Math.random() * 2 + 1
+            });
+        }
+
+        // Animation loop
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Update and draw particles
+            particles.forEach((p, i) => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Boundary check
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                // Draw particle
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(67, 97, 238, 0.5)';
+                ctx.fill();
+
+                // Draw connections
+                particles.forEach((p2, j) => {
+                    if (i !== j) {
+                        const dx = p.x - p2.x;
+                        const dy = p.y - p2.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < 100) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.strokeStyle = `rgba(67, 97, 238, ${(100 - distance) / 500})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                });
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    }
+
+    // Custom counter animation
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+        const target = parseInt(counter.dataset.target);
+
+        ScrollTrigger.create({
+            trigger: counter,
+            start: "top 80%",
+            onEnter: () => {
+                animateCounter(counter, target);
+            }
+        });
+    });
+
+    function animateCounter(counter, target) {
+        const duration = 2000;
+        const stepTime = 20;
+        const steps = duration / stepTime;
+        const stepValue = target / steps;
+        let currentValue = 0;
+
+        const interval = setInterval(() => {
+            currentValue += stepValue;
+            if (currentValue >= target) {
+                currentValue = target;
+                clearInterval(interval);
+            }
+
+            counter.innerText = Math.floor(currentValue).toLocaleString();
+        }, stepTime);
+    }
+
+    // Confetti effect on CTA button click
+    const ctaButton = document.getElementById('cta-button');
+    if (ctaButton) {
+        ctaButton.addEventListener('click', function(e) {
+            // Don't prevent default to allow navigation
+            const canvas = document.getElementById('confetti-canvas');
+            const confettiInstance = confetti.create(canvas);
+
+            confettiInstance({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        });
+
+        // Also trigger confetti when scrolling to CTA section
+        const ctaSection = document.getElementById('cta-section');
+        if (ctaSection) {
+            ScrollTrigger.create({
+                trigger: ctaSection,
+                start: "top 50%",
+                once: true,
+                onEnter: () => {
+                    const canvas = document.getElementById('confetti-canvas');
+                    const confettiInstance = confetti.create(canvas);
+
+                    confettiInstance({
+                        particleCount: 50,
+                        spread: 70,
+                        origin: { y: 0.1 }
+                    });
+                }
+            });
+        }
+    }
+
+    // Animate timeline cards on scroll
+    const timelineCards = document.querySelectorAll('.timeline-card');
+    timelineCards.forEach(card => {
+        ScrollTrigger.create({
+            trigger: card,
+            start: "top 80%",
+            onEnter: () => {
+                gsap.to(card, {
+                    scale: 1.05,
+                    duration: 0.5,
+                    ease: "power1.out",
+                    boxShadow: "0 15px 30px rgba(0,0,0,0.1)",
+                    onComplete: () => {
+                        gsap.to(card, {
+                            scale: 1,
+                            duration: 0.5,
+                            delay: 0.2,
+                            ease: "power1.out"
+                        });
+                    }
+                });
+            }
+        });
     });
 });
 </script>

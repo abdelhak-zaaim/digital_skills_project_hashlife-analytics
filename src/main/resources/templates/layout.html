@@ -19,6 +19,11 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/animations.css}" />
+
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
         :root {
@@ -36,6 +41,7 @@
             font-family: 'Poppins', sans-serif;
             background-color: #f8f9fa;
             overflow-x: hidden;
+            position: relative;
         }
 
         .navbar {
@@ -284,17 +290,81 @@
             transform-style: preserve-3d;
             perspective: 1000px;
         }
+
+        /* Back to top button */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        #backToTop.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Particles background */
+        .particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Page transitions */
+        .page-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-color);
+            z-index: 9999;
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .page-transition-overlay.active {
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
+    <!-- Page Transition Overlay -->
+    <div class="page-transition-overlay"></div>
+
+    <!-- Particles Background -->
+    <div id="particles-js" class="particles-js"></div>
+
     <!-- Scroll Progress Indicator -->
     <div id="scrollIndicator" class="scroll-indicator"></div>
+
+    <!-- Back to Top Button -->
+    <div id="backToTop" onclick="scrollToTop()">
+        <i class="bi bi-arrow-up"></i>
+    </div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(67, 97, 238, 0.95);">
         <div class="container">
             <a class="navbar-brand" href="/">
-                <i class="bi bi-hash display-6"></i> HashLife Analytics
+                <i class="bi bi-hash display-6 morph"></i> <span class="text-gradient">HashLife Analytics</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNav">
@@ -312,7 +382,7 @@
                         <a class="nav-link" href="#"><i class="bi bi-info-circle"></i> About</a>
                     </li>
                     <li class="nav-item ms-2">
-                        <a class="btn btn-light btn-sm rounded-pill px-3" href="/analysis">
+                        <a class="btn btn-light btn-shine btn-sm rounded-pill px-3" href="/analysis">
                             <i class="bi bi-graph-up-arrow"></i> New Analysis
                         </a>
                     </li>
@@ -327,14 +397,19 @@
         <p>Page content goes here</p>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer with Wave Animation -->
     <footer class="bg-dark text-white py-5 mt-5">
+        <!-- Wave Effect -->
+        <div class="position-relative" style="height: 60px; overflow: hidden; top: -60px; margin-bottom: -60px;">
+            <div class="wave"></div>
+        </div>
+
         <div class="container">
             <div class="row">
                 <div class="col-md-5" data-aos="fade-right" data-aos-duration="1000">
                     <div class="d-flex align-items-center mb-3">
                         <i class="bi bi-hash display-6 me-2 text-primary"></i>
-                        <h4 class="mb-0">HashLife Analytics</h4>
+                        <h4 class="mb-0 text-gradient">HashLife Analytics</h4>
                     </div>
                     <p class="text-white-50">Uncovering insights from hashtag trends and cultural movements on social media platforms. Our analytics tools help you understand the lifecycle and impact of hashtags.</p>
                 </div>
@@ -350,14 +425,14 @@
                 <div class="col-md-3" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                     <h5 class="mb-3 border-bottom border-primary border-2 pb-2 d-inline-block">Connect</h5>
                     <div class="d-flex gap-3 fs-4 mb-3">
-                        <a href="#" class="text-white-50"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="text-white-50"><i class="bi bi-github"></i></a>
-                        <a href="#" class="text-white-50"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="text-white-50 hover-glow"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white-50 hover-glow"><i class="bi bi-github"></i></a>
+                        <a href="#" class="text-white-50 hover-glow"><i class="bi bi-linkedin"></i></a>
                     </div>
                     <p class="text-white-50 small">Subscribe to our newsletter for updates</p>
-                    <div class="input-group">
+                    <div class="input-group glow">
                         <input type="email" class="form-control bg-dark border-secondary text-white" placeholder="Your email">
-                        <button class="btn btn-primary" type="button">Subscribe</button>
+                        <button class="btn btn-primary btn-shine" type="button">Subscribe</button>
                     </div>
                 </div>
             </div>
@@ -379,13 +454,27 @@
     <script th:src="@{/webjars/chartjs/2.9.4/Chart.min.js}"></script>
     <!-- AOS Animation Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize page transition effect
+            const overlay = document.querySelector('.page-transition-overlay');
+            overlay.classList.add('active');
+
+            setTimeout(() => {
+                overlay.style.transform = 'translateY(-100%)';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 500);
+            }, 500);
+
             // Initialize AOS animations
             AOS.init({
                 duration: 800,
-                once: true
+                once: true,
+                mirror: true
             });
 
             // Scroll progress indicator
@@ -403,6 +492,104 @@
                 } else {
                     navbar.classList.remove('scrolled');
                 }
+
+                // Show/hide back to top button
+                const backToTop = document.getElementById('backToTop');
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            });
+
+            // Initialize Particles.js
+            if (document.getElementById('particles-js')) {
+                particlesJS('particles-js', {
+                    "particles": {
+                        "number": {
+                            "value": 80,
+                            "density": {
+                                "enable": true,
+                                "value_area": 800
+                            }
+                        },
+                        "color": {
+                            "value": "#4361ee"
+                        },
+                        "shape": {
+                            "type": "circle",
+                            "stroke": {
+                                "width": 0,
+                                "color": "#000000"
+                            }
+                        },
+                        "opacity": {
+                            "value": 0.2,
+                            "random": false,
+                            "anim": {
+                                "enable": false
+                            }
+                        },
+                        "size": {
+                            "value": 3,
+                            "random": true
+                        },
+                        "line_linked": {
+                            "enable": true,
+                            "distance": 150,
+                            "color": "#4361ee",
+                            "opacity": 0.1,
+                            "width": 1
+                        },
+                        "move": {
+                            "enable": true,
+                            "speed": 1,
+                            "direction": "none",
+                            "random": false,
+                            "straight": false,
+                            "out_mode": "out",
+                            "bounce": false
+                        }
+                    },
+                    "interactivity": {
+                        "detect_on": "canvas",
+                        "events": {
+                            "onhover": {
+                                "enable": true,
+                                "mode": "grab"
+                            },
+                            "onclick": {
+                                "enable": true,
+                                "mode": "push"
+                            },
+                            "resize": true
+                        }
+                    },
+                    "retina_detect": true
+                });
+            }
+
+            // Mouse trail effect
+            document.addEventListener('mousemove', function(e) {
+                createCursorTrail(e);
+            });
+
+            // Initialize GSAP animations
+            gsap.registerPlugin(ScrollTrigger);
+
+            gsap.from(".navbar-brand", {
+                duration: 1,
+                x: -50,
+                opacity: 0,
+                delay: 0.5
+            });
+
+            gsap.from(".navbar-nav .nav-item", {
+                duration: 1,
+                y: -20,
+                opacity: 0,
+                stagger: 0.2,
+                delay: 0.7
             });
         });
 
@@ -413,6 +600,59 @@
                 behavior: 'smooth'
             });
         }
+
+        // Create cursor trail effect
+        function createCursorTrail(e) {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.left = e.pageX + 'px';
+            trail.style.top = e.pageY + 'px';
+
+            document.body.appendChild(trail);
+
+            setTimeout(() => {
+                trail.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(trail);
+                }, 300);
+            }, 100);
+        }
+
+        // Create ripple effect for buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.btn')) {
+                const btn = e.target.closest('.btn');
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple';
+                btn.appendChild(ripple);
+
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+
+                setTimeout(() => {
+                    btn.removeChild(ripple);
+                }, 1000);
+            }
+        });
+
+        // Intercept link clicks for page transitions
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('a');
+            if (link && link.href && link.href.indexOf(window.location.origin) === 0 && !link.classList.contains('no-transition')) {
+                e.preventDefault();
+                const overlay = document.querySelector('.page-transition-overlay');
+                overlay.style.display = 'block';
+                overlay.style.transform = 'translateY(0)';
+
+                setTimeout(() => {
+                    window.location.href = link.href;
+                }, 500);
+            }
+        });
     </script>
 </body>
 </html>
