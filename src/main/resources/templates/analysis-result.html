@@ -10,7 +10,7 @@
     <div class="page-header">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-8">
+                <div class="col-lg-8" data-aos="fade-right" data-aos-duration="1000">
                     <h1 class="display-4 fw-bold">
                         Analysis of <span class="text-light" th:text="'#' + ${analysis.hashtag}">hashtag</span>
                     </h1>
@@ -21,7 +21,7 @@
                         <span th:text="${#temporals.format(analysis.endDate, 'dd MMM yyyy')}">10 Jun 2025</span>
                     </p>
                 </div>
-                <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                <div class="col-lg-4 text-lg-end mt-3 mt-lg-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                     <a href="/analysis" class="btn btn-light">
                         <i class="bi bi-plus-circle"></i> New Analysis
                     </a>
@@ -36,14 +36,14 @@
     <div class="container my-5">
         <!-- Key Metrics Dashboard -->
         <div class="row g-4 mb-5">
-            <div class="col-md-3">
-                <div class="card border-0 shadow-sm h-100">
+            <div class="col-md-3" data-aos="fade-up" data-aos-duration="800">
+                <div class="card border-0 shadow-sm h-100 tilt-card">
                     <div class="card-body text-center p-4">
                         <div class="d-inline-flex align-items-center justify-content-center bg-light rounded-circle p-3 mb-3">
                             <i class="bi bi-chat-left-text text-primary fs-4"></i>
                         </div>
                         <h5 class="text-uppercase fw-bold text-muted small">Total Tweets</h5>
-                        <h2 class="display-5 fw-bold mb-0" th:text="${analysis.totalTweets}">1000</h2>
+                        <h2 class="display-5 fw-bold mb-0 counter" th:data-target="${analysis.totalTweets}" th:text="${analysis.totalTweets}">1000</h2>
                         <div class="mt-2">
                             <span class="badge bg-success">
                                 <i class="bi bi-arrow-up"></i> Analyzed
@@ -52,14 +52,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card border-0 shadow-sm h-100">
+            <div class="col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                <div class="card border-0 shadow-sm h-100 tilt-card">
                     <div class="card-body text-center p-4">
                         <div class="d-inline-flex align-items-center justify-content-center bg-light rounded-circle p-3 mb-3">
                             <i class="bi bi-repeat text-primary fs-4"></i>
                         </div>
                         <h5 class="text-uppercase fw-bold text-muted small">Total Retweets</h5>
-                        <h2 class="display-5 fw-bold mb-0" th:text="${analysis.totalRetweets}">500</h2>
+                        <h2 class="display-5 fw-bold mb-0 counter" th:data-target="${analysis.totalRetweets}" th:text="${analysis.totalRetweets}">500</h2>
                         <div class="mt-2">
                             <span class="badge bg-primary">
                                 <i class="bi bi-share"></i> Reach
@@ -68,14 +68,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card border-0 shadow-sm h-100">
+            <div class="col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                <div class="card border-0 shadow-sm h-100 tilt-card">
                     <div class="card-body text-center p-4">
                         <div class="d-inline-flex align-items-center justify-content-center bg-light rounded-circle p-3 mb-3">
                             <i class="bi bi-heart text-primary fs-4"></i>
                         </div>
                         <h5 class="text-uppercase fw-bold text-muted small">Total Likes</h5>
-                        <h2 class="display-5 fw-bold mb-0" th:text="${analysis.totalLikes}">2500</h2>
+                        <h2 class="display-5 fw-bold mb-0 counter" th:data-target="${analysis.totalLikes}" th:text="${analysis.totalLikes}">2500</h2>
                         <div class="mt-2">
                             <span class="badge bg-danger">
                                 <i class="bi bi-heart-fill"></i> Engagement
@@ -84,14 +84,16 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card border-0 shadow-sm h-100">
+            <div class="col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
+                <div class="card border-0 shadow-sm h-100 tilt-card">
                     <div class="card-body text-center p-4">
                         <div class="d-inline-flex align-items-center justify-content-center bg-light rounded-circle p-3 mb-3">
                             <i class="bi bi-bar-chart text-primary fs-4"></i>
                         </div>
                         <h5 class="text-uppercase fw-bold text-muted small">Engagement Rate</h5>
-                        <h2 class="display-5 fw-bold mb-0" th:text="${analysis.totalTweets > 0 ? #numbers.formatDecimal((analysis.totalRetweets + analysis.totalLikes) / analysis.totalTweets, 1, 2) : 0}">3.0</h2>
+                        <h2 class="display-5 fw-bold mb-0 counter"
+                            th:data-target="${analysis.totalTweets > 0 ? (analysis.totalRetweets + analysis.totalLikes) / analysis.totalTweets : 0}"
+                            th:text="${analysis.totalTweets > 0 ? #numbers.formatDecimal((analysis.totalRetweets + analysis.totalLikes) / analysis.totalTweets, 1, 2) : 0}">3.0</h2>
                         <div class="mt-2">
                             <span class="badge bg-info">
                                 <i class="bi bi-graph-up"></i> Impact
@@ -103,13 +105,22 @@
         </div>
 
         <!-- Charts -->
-        <div class="row mb-4">
+        <div class="row mb-5" data-aos="fade-up" data-aos-duration="1000">
             <div class="col-12">
-                <div class="card shadow mb-4">
-                    <div class="card-header">
-                        <h3 class="h5 mb-0">Hashtag Lifecycle</h3>
+                <div class="card shadow mb-4 border-0">
+                    <div class="card-header bg-white py-3 d-flex align-items-center justify-content-between">
+                        <h3 class="h5 mb-0 fw-bold">Hashtag Lifecycle</h3>
+                        <div class="chart-actions">
+                            <div class="btn-group" role="group" aria-label="Chart view options">
+                                <button type="button" class="btn btn-sm btn-outline-primary active" id="viewWeekly">Weekly</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary" id="viewDaily">Daily</button>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary ms-2" id="downloadChart">
+                                <i class="bi bi-download"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body p-4">
                         <canvas id="lifecycleChart" height="300"></canvas>
                     </div>
                 </div>
@@ -118,62 +129,98 @@
 
         <div class="row">
             <!-- Related Hashtags -->
-            <div class="col-md-6">
-                <div class="card shadow h-100">
-                    <div class="card-header">
-                        <h3 class="h5 mb-0">Related Hashtags</h3>
+            <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000">
+                <div class="card shadow h-100 border-0">
+                    <div class="card-header bg-white py-3">
+                        <h3 class="h5 mb-0 fw-bold">Related Hashtags</h3>
                     </div>
-                    <div class="card-body">
-                        <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between align-items-center"
-                                th:each="hashtag : ${analysis.relatedHashtags}">
-                                <span th:text="'#' + ${hashtag}">hashtag</span>
-                                <span class="badge bg-primary rounded-pill">
-                                    <!-- Would show count here if available -->
-                                </span>
-                            </li>
-                            <li class="list-group-item text-center text-muted" th:if="${#lists.isEmpty(analysis.relatedHashtags)}">
-                                No related hashtags found
-                            </li>
-                        </ul>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush rounded-bottom">
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-4 py-3 border-start-0 border-end-0"
+                                th:each="hashtag, iter : ${analysis.relatedHashtags}"
+                                th:style="${'--animation-order: ' + iter.count}">
+                                <div class="d-flex align-items-center">
+                                    <div class="me-3" style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; background: rgba(67, 97, 238, 0.1); border-radius: 50%;">
+                                        <i class="bi bi-hash text-primary small"></i>
+                                    </div>
+                                    <span th:text="${hashtag}">hashtag</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="progress me-2" style="width: 60px; height: 6px;" th:data-value="${iter.count}">
+                                        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%"></div>
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">
+                                        <!-- Would show count here if available -->
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="list-group-item text-center text-muted py-4" th:if="${#lists.isEmpty(analysis.relatedHashtags)}">
+                                <i class="bi bi-emoji-neutral mb-2 display-6 text-muted"></i>
+                                <p>No related hashtags found</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Top Influencers -->
-            <div class="col-md-6">
-                <div class="card shadow h-100">
-                    <div class="card-header">
-                        <h3 class="h5 mb-0">Top Influencers</h3>
+            <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <div class="card shadow h-100 border-0">
+                    <div class="card-header bg-white py-3">
+                        <h3 class="h5 mb-0 fw-bold">Top Influencers</h3>
                     </div>
-                    <div class="card-body">
-                        <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between align-items-center"
-                                th:each="influencer : ${analysis.topInfluencers}">
-                                <span th:text="${influencer}">@username</span>
-                                <span class="badge bg-primary rounded-pill">
-                                    <!-- Would show count here if available -->
-                                </span>
-                            </li>
-                            <li class="list-group-item text-center text-muted" th:if="${#lists.isEmpty(analysis.topInfluencers)}">
-                                No top influencers found
-                            </li>
-                        </ul>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush rounded-bottom">
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-4 py-3 border-start-0 border-end-0"
+                                th:each="influencer, iter : ${analysis.topInfluencers}"
+                                th:style="${'--animation-order: ' + iter.count}">
+                                <div class="d-flex align-items-center">
+                                    <div class="me-3 rounded-circle bg-light d-flex align-items-center justify-content-center"
+                                        style="width: 36px; height: 36px;">
+                                        <i class="bi bi-person text-primary"></i>
+                                    </div>
+                                    <span th:text="${influencer}">@username</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="progress me-2" style="width: 60px; height: 6px;" th:data-value="${iter.index + 1}">
+                                        <div class="progress-bar bg-info progress-bar-striped" role="progressbar" style="width: 0%"></div>
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">
+                                        <!-- Would show count here if available -->
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="list-group-item text-center text-muted py-4" th:if="${#lists.isEmpty(analysis.topInfluencers)}">
+                                <i class="bi bi-emoji-neutral mb-2 display-6 text-muted"></i>
+                                <p>No top influencers found</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Sample Tweets -->
-        <div class="row mt-4">
+        <div class="row mt-5" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
             <div class="col-12">
-                <div class="card shadow">
-                    <div class="card-header">
-                        <h3 class="h5 mb-0">Sample Tweets</h3>
+                <div class="card shadow border-0">
+                    <div class="card-header bg-white py-3 d-flex align-items-center justify-content-between">
+                        <h3 class="h5 mb-0 fw-bold">Sample Tweets</h3>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" id="tweetSortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                Sort by
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="tweetSortDropdown">
+                                <li><a class="dropdown-item" href="#">Date (newest first)</a></li>
+                                <li><a class="dropdown-item" href="#">Most likes</a></li>
+                                <li><a class="dropdown-item" href="#">Most retweets</a></li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="tweet-list">
-                            <div class="tweet-card mb-3" th:each="tweet : ${analysis.sampleTweets}">
+                            <div class="tweet-card mb-3" th:each="tweet, iter : ${analysis.sampleTweets}"
+                                th:data-aos="fade-up" th:data-aos-duration="800" th:data-aos-delay="${iter.count * 100}">
                                 <div class="d-flex">
                                     <div class="tweet-avatar me-3">
                                         <div class="avatar-placeholder bg-light rounded-circle d-flex align-items-center justify-content-center"
@@ -181,31 +228,53 @@
                                             <i class="bi bi-person"></i>
                                         </div>
                                     </div>
-                                    <div class="tweet-content">
+                                    <div class="tweet-content flex-grow-1">
                                         <div class="tweet-header d-flex">
-                                            <h6 class="mb-0" th:text="${tweet.username}">Username</h6>
+                                            <h6 class="mb-0 fw-bold" th:text="${tweet.username}">Username</h6>
                                             <small class="text-muted ms-auto"
                                                    th:text="${#temporals.format(tweet.createdAt, 'dd MMM yyyy HH:mm')}">Date</small>
                                         </div>
-                                        <div class="tweet-text my-1" th:text="${tweet.text}">Tweet text</div>
+                                        <div class="tweet-text my-2" th:text="${tweet.text}">Tweet text</div>
                                         <div class="tweet-stats d-flex text-muted small">
-                                            <div class="me-3">
-                                                <i class="bi bi-heart"></i> <span th:text="${tweet.likeCount}">0</span>
+                                            <div class="me-3 d-flex align-items-center">
+                                                <i class="bi bi-heart me-1"></i> <span th:text="${tweet.likeCount}">0</span>
                                             </div>
-                                            <div class="me-3">
-                                                <i class="bi bi-repeat"></i> <span th:text="${tweet.retweetCount}">0</span>
+                                            <div class="me-3 d-flex align-items-center">
+                                                <i class="bi bi-repeat me-1"></i> <span th:text="${tweet.retweetCount}">0</span>
                                             </div>
-                                            <div>
-                                                <i class="bi bi-chat"></i> <span th:text="${tweet.replyCount}">0</span>
+                                            <div class="d-flex align-items-center">
+                                                <i class="bi bi-chat me-1"></i> <span th:text="${tweet.replyCount}">0</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-center text-muted py-3" th:if="${#lists.isEmpty(analysis.sampleTweets)}">
-                                No sample tweets to display
+                            <div class="text-center text-muted py-5" th:if="${#lists.isEmpty(analysis.sampleTweets)}">
+                                <i class="bi bi-emoji-neutral display-4 mb-3"></i>
+                                <h5>No sample tweets to display</h5>
+                                <p class="text-muted">Try adjusting your date range to capture more tweets</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Share and Export Section -->
+        <div class="row mt-4" data-aos="fade-up" data-aos-duration="800">
+            <div class="col-12">
+                <div class="card border-0 bg-primary bg-opacity-10 p-4 text-center">
+                    <h4 class="fw-bold mb-3">Share these insights</h4>
+                    <div class="d-flex justify-content-center gap-3">
+                        <button class="btn btn-outline-primary">
+                            <i class="bi bi-download me-2"></i> Download PDF
+                        </button>
+                        <button class="btn btn-outline-primary">
+                            <i class="bi bi-share me-2"></i> Share Results
+                        </button>
+                        <button class="btn btn-primary">
+                            <i class="bi bi-plus-circle me-2"></i> New Analysis
+                        </button>
                     </div>
                 </div>
             </div>
@@ -223,9 +292,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const tweetData = labels.map(day => tweetsByDay[day] || 0);
     const engagementData = labels.map(day => engagementByDay[day] || 0);
 
-    // Create chart
+    // Create a better chart with gradient fill
     const ctx = document.getElementById('lifecycleChart').getContext('2d');
-    new Chart(ctx, {
+
+    // Create gradient for tweet line
+    const tweetGradient = ctx.createLinearGradient(0, 0, 0, 400);
+    tweetGradient.addColorStop(0, 'rgba(29, 161, 242, 0.6)');
+    tweetGradient.addColorStop(1, 'rgba(29, 161, 242, 0.0)');
+
+    // Create gradient for engagement line
+    const engagementGradient = ctx.createLinearGradient(0, 0, 0, 400);
+    engagementGradient.addColorStop(0, 'rgba(23, 162, 184, 0.6)');
+    engagementGradient.addColorStop(1, 'rgba(23, 162, 184, 0.0)');
+
+    // Create chart
+    const lifecycleChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: labels,
@@ -233,15 +314,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 {
                     label: 'Tweet Count',
                     borderColor: '#1DA1F2',
+                    backgroundColor: tweetGradient,
                     data: tweetData,
-                    tension: 0.3,
+                    tension: 0.4,
+                    fill: true,
+                    pointBackgroundColor: '#1DA1F2',
+                    pointRadius: 4,
+                    pointHoverRadius: 6,
                     yAxisID: 'y'
                 },
                 {
                     label: 'Engagement',
                     borderColor: '#17a2b8',
+                    backgroundColor: engagementGradient,
                     data: engagementData,
-                    tension: 0.3,
+                    tension: 0.4,
+                    fill: true,
+                    pointBackgroundColor: '#17a2b8',
+                    pointRadius: 4,
+                    pointHoverRadius: 6,
                     yAxisID: 'y1'
                 }
             ]
@@ -252,6 +343,36 @@ document.addEventListener('DOMContentLoaded', function() {
                 mode: 'index',
                 intersect: false
             },
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        usePointStyle: true,
+                        padding: 20
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(255,255,255,0.9)',
+                    titleColor: '#333',
+                    bodyColor: '#666',
+                    borderColor: '#ddd',
+                    borderWidth: 1,
+                    padding: 15,
+                    displayColors: true,
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed.y !== null) {
+                                label += context.parsed.y;
+                            }
+                            return label;
+                        }
+                    }
+                }
+            },
             scales: {
                 y: {
                     type: 'linear',
@@ -259,7 +380,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     position: 'left',
                     title: {
                         display: true,
-                        text: 'Tweet Count'
+                        text: 'Tweet Count',
+                        font: {
+                            weight: 'bold'
+                        }
+                    },
+                    grid: {
+                        drawBorder: false
+                    },
+                    ticks: {
+                        beginAtZero: true
                     }
                 },
                 y1: {
@@ -267,15 +397,96 @@ document.addEventListener('DOMContentLoaded', function() {
                     display: true,
                     position: 'right',
                     grid: {
-                        drawOnChartArea: false
+                        drawOnChartArea: false,
+                        drawBorder: false
                     },
                     title: {
                         display: true,
-                        text: 'Engagement'
+                        text: 'Engagement',
+                        font: {
+                            weight: 'bold'
+                        }
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
                     }
                 }
             }
         }
+    });
+
+    // Download chart as image
+    document.getElementById('downloadChart').addEventListener('click', function() {
+        const link = document.createElement('a');
+        link.href = lifecycleChart.toBase64Image();
+        link.download = 'hashtag-lifecycle-chart.png';
+        link.click();
+    });
+
+    // Animate progress bars
+    const progressBars = document.querySelectorAll('.progress');
+    progressBars.forEach(progressBar => {
+        const value = progressBar.dataset.value;
+        const maxValue = 10; // Assume max of 10 items
+        const percent = Math.min(100, (value / maxValue) * 100);
+
+        setTimeout(() => {
+            progressBar.querySelector('.progress-bar').style.width = percent + '%';
+        }, 500);
+    });
+
+    // Animate counters
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+        const target = parseFloat(counter.dataset.target);
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+
+        const updateCounter = () => {
+            if (current < target) {
+                current += step;
+                if (current > target) current = target;
+
+                // Format with decimals if needed
+                if (target < 10 && target % 1 !== 0) {
+                    counter.textContent = current.toFixed(2);
+                } else {
+                    counter.textContent = Math.floor(current).toLocaleString();
+                }
+
+                requestAnimationFrame(updateCounter);
+            }
+        };
+
+        updateCounter();
+    });
+
+    // Add 3D tilt effect to cards with class tilt-card
+    const tiltCards = document.querySelectorAll('.tilt-card');
+    tiltCards.forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const xPos = (x - centerX) / centerX;
+            const yPos = (y - centerY) / centerY;
+
+            this.style.transform = `perspective(1000px) rotateY(${xPos * 3}deg) rotateX(${-yPos * 3}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) scale3d(1, 1, 1)';
+        });
     });
 });
 </script>

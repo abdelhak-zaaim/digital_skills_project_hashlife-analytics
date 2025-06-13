@@ -6,32 +6,47 @@
 </head>
 <body>
 <section>
-    <!-- Hero Section -->
+    <!-- Hero Section with animated elements -->
     <div class="page-header text-center">
         <div class="container py-5">
-            <h1 class="display-3 fw-bold mb-3">HashLife <span class="text-light">Analytics</span></h1>
-            <p class="lead col-md-8 mx-auto">Discover how cultural hashtags evolve, engage, and influence conversations on social media platforms.</p>
-            <div class="mt-5">
-                <a href="/analysis" class="btn btn-light btn-lg shadow px-5">Start Analyzing <i class="bi bi-arrow-right"></i></a>
+            <h1 class="display-3 fw-bold mb-3" data-aos="fade-down" data-aos-duration="1000">
+                Hash<span class="text-light">Life</span> <span class="text-light">Analytics</span>
+            </h1>
+            <p class="lead col-md-8 mx-auto" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                Discover how cultural hashtags evolve, engage, and influence conversations on social media platforms.
+            </p>
+            <div class="mt-5" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="400">
+                <a href="/analysis" class="btn btn-light btn-lg shadow px-5 pulse">
+                    Start Analyzing <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+            <div class="position-relative mt-4">
+                <div class="floating-hashtags d-none d-lg-block">
+                    <span class="badge bg-white text-primary opacity-75 position-absolute" style="top: -60px; left: 20%">#culture</span>
+                    <span class="badge bg-white text-primary opacity-50 position-absolute" style="top: 10px; left: 65%">#trending</span>
+                    <span class="badge bg-white text-primary opacity-60 position-absolute" style="top: -30px; left: 80%">#analytics</span>
+                    <span class="badge bg-white text-primary opacity-40 position-absolute" style="top: 5px; left: 30%">#insights</span>
+                    <span class="badge bg-white text-primary opacity-70 position-absolute" style="top: -80px; left: 50%">#social</span>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="container">
-        <!-- Introduction -->
-        <div class="row align-items-center my-5">
-            <div class="col-lg-6">
+        <!-- Introduction with animated elements -->
+        <div class="row align-items-center my-5 py-3">
+            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
                 <h2 class="fw-bold mb-4">Analyse de l'évolution d'un hashtag culturel</h2>
                 <p class="lead">Explorez le cycle de vie des hashtags liés à des événements culturels sur X (ex-Twitter).</p>
                 <p>Notre outil vous permet de suivre l'évolution d'un hashtag culturel dans le temps, d'analyser son engagement
                    et de découvrir les tendances associées pour comprendre l'impact des événements culturels sur les réseaux sociaux.</p>
                 <div class="mt-4 d-flex gap-3">
-                    <a href="/analysis" class="btn btn-primary">Commencer l'analyse</a>
+                    <a href="/analysis" class="btn btn-gradient">Commencer l'analyse</a>
                     <a href="#features" class="btn btn-outline-primary">En savoir plus</a>
                 </div>
             </div>
-            <div class="col-lg-6 mt-4 mt-lg-0">
-                <div class="position-relative">
+            <div class="col-lg-6 mt-4 mt-lg-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <div class="position-relative tilt-card">
                     <div class="card shadow-lg border-0">
                         <div class="card-body text-center p-5">
                             <div class="p-3 rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
@@ -48,98 +63,268 @@
             </div>
         </div>
 
-        <!-- Features -->
-        <div id="features" class="my-5 pt-3">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">Fonctionnalités clés</h2>
-                <p class="lead">Tout ce dont vous avez besoin pour analyser les hashtags culturels</p>
+        <!-- Visual divider -->
+        <div class="text-center my-5">
+            <div class="d-inline-flex align-items-center justify-content-center">
+                <div class="bg-primary" style="height: 2px; width: 80px;"></div>
+                <i class="bi bi-hash mx-3 fs-4 text-primary"></i>
+                <div class="bg-primary" style="height: 2px; width: 80px;"></div>
+            </div>
+        </div>
+
+        <!-- Features with animation effects -->
+        <div id="features" class="my-5 pt-5">
+            <div class="text-center mb-5" data-aos="fade-up" data-aos-duration="1000">
+                <span class="badge bg-primary text-light px-3 py-2 mb-3">Fonctionnalités</span>
+                <h2 class="fw-bold display-5">Fonctionnalités clés</h2>
+                <p class="lead col-lg-8 mx-auto">Tout ce dont vous avez besoin pour analyser les hashtags culturels et comprendre leur impact</p>
             </div>
 
             <div class="row g-4">
-                <div class="col-md-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-duration="1000">
                     <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="feature-icon mb-4 text-primary">
-                                <i class="bi bi-graph-up-arrow fs-1"></i>
+                        <div class="card-body p-4 p-xl-5">
+                            <div class="mb-4 p-3 rounded-circle bg-primary bg-opacity-10 d-inline-flex">
+                                <i class="bi bi-graph-up-arrow fs-1 text-primary"></i>
                             </div>
-                            <h3 class="h4">Évolution temporelle</h3>
-                            <p>Analysez comment un hashtag gagne en popularité, atteint son pic et décline au fil du temps avec des graphiques interactifs et intuitifs.</p>
+                            <h3 class="h4 fw-bold">Évolution temporelle</h3>
+                            <p class="text-muted">Analysez comment un hashtag gagne en popularité, atteint son pic et décline au fil du temps avec des graphiques interactifs et intuitifs.</p>
+                            <hr class="my-3 opacity-25">
+                            <div class="d-flex align-items-center text-primary">
+                                <small class="fw-medium">Explorer</small>
+                                <i class="bi bi-arrow-right ms-2"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                     <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="feature-icon mb-4 text-primary">
-                                <i class="bi bi-people-fill fs-1"></i>
+                        <div class="card-body p-4 p-xl-5">
+                            <div class="mb-4 p-3 rounded-circle bg-primary bg-opacity-10 d-inline-flex">
+                                <i class="bi bi-people-fill fs-1 text-primary"></i>
                             </div>
-                            <h3 class="h4">Analyse d'engagement</h3>
-                            <p>Mesurez l'engagement généré par le hashtag à travers les likes, retweets et réponses pour évaluer son impact réel sur l'audience.</p>
+                            <h3 class="h4 fw-bold">Analyse d'engagement</h3>
+                            <p class="text-muted">Mesurez l'engagement généré par le hashtag à travers les likes, retweets et réponses pour évaluer son impact réel sur l'audience.</p>
+                            <hr class="my-3 opacity-25">
+                            <div class="d-flex align-items-center text-primary">
+                                <small class="fw-medium">Explorer</small>
+                                <i class="bi bi-arrow-right ms-2"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
                     <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="feature-icon mb-4 text-primary">
-                                <i class="bi bi-diagram-3-fill fs-1"></i>
+                        <div class="card-body p-4 p-xl-5">
+                            <div class="mb-4 p-3 rounded-circle bg-primary bg-opacity-10 d-inline-flex">
+                                <i class="bi bi-diagram-3-fill fs-1 text-primary"></i>
                             </div>
-                            <h3 class="h4">Cartographie des connexions</h3>
-                            <p>Découvrez les hashtags associés et les influenceurs qui amplifient la conversation pour une vision complète de l'écosystème.</p>
+                            <h3 class="h4 fw-bold">Cartographie des connexions</h3>
+                            <p class="text-muted">Découvrez les hashtags associés et les influenceurs qui amplifient la conversation pour une vision complète de l'écosystème.</p>
+                            <hr class="my-3 opacity-25">
+                            <div class="d-flex align-items-center text-primary">
+                                <small class="fw-medium">Explorer</small>
+                                <i class="bi bi-arrow-right ms-2"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- How it works -->
+        <!-- How it works - Enhanced with timeline -->
         <div class="my-5 py-5">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">Comment ça marche</h2>
-                <p class="lead">Trois étapes simples pour analyser vos hashtags culturels</p>
+            <div class="text-center mb-5" data-aos="fade-up" data-aos-duration="1000">
+                <span class="badge bg-primary text-light px-3 py-2 mb-3">Processus</span>
+                <h2 class="fw-bold display-5">Comment ça marche</h2>
+                <p class="lead col-lg-8 mx-auto">Trois étapes simples pour analyser vos hashtags culturels</p>
             </div>
 
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="steps">
-                        <div class="row mb-5 align-items-center">
-                            <div class="col-md-2 text-center">
-                                <div class="step-number bg-primary text-white rounded-circle d-inline-flex justify-content-center align-items-center fw-bold mb-3" style="width: 60px; height: 60px;">1</div>
+            <div class="row position-relative">
+                <!-- Timeline connector -->
+                <div class="position-absolute d-none d-lg-block" style="left: 50%; width: 2px; top: 0; bottom: 10%; background-color: #e9ecef; z-index: 0;"></div>
+
+                <!-- Step 1 -->
+                <div class="col-lg-6 text-end mb-5" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center justify-content-end mb-3">
+                                <h4 class="fw-bold mb-0 me-3">Sélectionnez un hashtag</h4>
+                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                                    <span class="fw-bold">1</span>
+                                </div>
                             </div>
-                            <div class="col-md-10">
-                                <h3>Entrez votre hashtag culturel</h3>
-                                <p>Choisissez un hashtag lié à un événement culturel que vous souhaitez analyser (ex: festival, exposition, événement musical).</p>
+                            <p class="mb-0 text-muted">Choisissez un hashtag culturel et spécifiez la période temporelle qui vous intéresse pour commencer votre analyse.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-5"></div>
+
+                <!-- Step 2 -->
+                <div class="col-lg-6 mb-5"></div>
+                <div class="col-lg-6 text-start mb-5" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                                    <span class="fw-bold">2</span>
+                                </div>
+                                <h4 class="fw-bold mb-0 ms-3">Analysez les données</h4>
+                            </div>
+                            <p class="mb-0 text-muted">Notre système traite les données et génère des visualisations pour montrer l'évolution du hashtag et son impact.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="col-lg-6 text-end" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="400">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center justify-content-end mb-3">
+                                <h4 class="fw-bold mb-0 me-3">Découvrez des insights</h4>
+                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                                    <span class="fw-bold">3</span>
+                                </div>
+                            </div>
+                            <p class="mb-0 text-muted">Explorez les tendances, identifiez les moments clés et comprenez l'impact culturel du hashtag analysé.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6"></div>
+            </div>
+        </div>
+
+        <!-- Testimonials/Use Cases Section -->
+        <div class="my-5 py-5 bg-light rounded-4 p-3 p-md-5">
+            <div class="text-center mb-5" data-aos="fade-up" data-aos-duration="1000">
+                <span class="badge bg-primary text-light px-3 py-2 mb-3">Témoignages</span>
+                <h2 class="fw-bold display-5">Ce que disent nos utilisateurs</h2>
+                <p class="lead col-lg-8 mx-auto">Découvrez comment HashLife Analytics aide à comprendre les phénomènes culturels</p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="card border-0 h-100">
+                        <div class="card-body p-4">
+                            <div class="mb-3 text-warning">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                            <p class="mb-4 fst-italic">"Cet outil nous a permis de comprendre comment notre festival a été perçu sur les réseaux sociaux et d'identifier les moments forts pour notre communication future."</p>
+                            <div class="d-flex align-items-center">
+                                <div class="rounded-circle bg-primary bg-opacity-10 p-2">
+                                    <i class="bi bi-person text-primary"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <h6 class="mb-0 fw-bold">Marie Dupont</h6>
+                                    <small class="text-muted">Directrice Marketing, Festival d'Avignon</small>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="row mb-5 align-items-center">
-                            <div class="col-md-2 text-center">
-                                <div class="step-number bg-primary text-white rounded-circle d-inline-flex justify-content-center align-items-center fw-bold mb-3" style="width: 60px; height: 60px;">2</div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="card border-0 h-100">
+                        <div class="card-body p-4">
+                            <div class="mb-3 text-warning">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
                             </div>
-                            <div class="col-md-10">
-                                <h3>Sélectionnez la période d'analyse</h3>
-                                <p>Définissez une période qui couvre l'avant, le pendant et l'après de l'événement pour une analyse complète du cycle de vie.</p>
+                            <p class="mb-4 fst-italic">"Les analyses d'HashLife nous ont fourni des données précieuses pour notre recherche sur l'impact des hashtags dans la diffusion des mouvements culturels."</p>
+                            <div class="d-flex align-items-center">
+                                <div class="rounded-circle bg-primary bg-opacity-10 p-2">
+                                    <i class="bi bi-person text-primary"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <h6 class="mb-0 fw-bold">Prof. Jean Martin</h6>
+                                    <small class="text-muted">Université de Paris-Sorbonne</small>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="row align-items-center">
-                            <div class="col-md-2 text-center">
-                                <div class="step-number bg-primary text-white rounded-circle d-inline-flex justify-content-center align-items-center fw-bold mb-3" style="width: 60px; height: 60px;">3</div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                    <div class="card border-0 h-100">
+                        <div class="card-body p-4">
+                            <div class="mb-3 text-warning">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
                             </div>
-                            <div class="col-md-10">
-                                <h3>Explorez les insights visuels</h3>
-                                <p>Découvrez des graphiques interactifs, des tendances d'engagement et des connexions entre hashtags pour comprendre l'impact culturel.</p>
+                            <p class="mb-4 fst-italic">"Une interface intuitive et des visualisations claires qui transforment des données complexes en insights actionnables pour notre stratégie digitale."</p>
+                            <div class="d-flex align-items-center">
+                                <div class="rounded-circle bg-primary bg-opacity-10 p-2">
+                                    <i class="bi bi-person text-primary"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <h6 class="mb-0 fw-bold">Sophie Lefèvre</h6>
+                                    <small class="text-muted">Social Media Manager, Musée d'Orsay</small>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="text-center mt-5">
-                <a href="/analysis" class="btn btn-primary btn-lg">Commencer maintenant</a>
+        <!-- Call to action -->
+        <div class="my-5 py-5 text-center" data-aos="fade-up" data-aos-duration="1000">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-4">Prêt à explorer l'impact des hashtags culturels ?</h2>
+                <p class="lead mb-5">Commencez dès maintenant à analyser l'évolution et l'impact des hashtags sur les événements culturels.</p>
+                <a href="/analysis" class="btn btn-gradient btn-lg pulse px-5 py-3">
+                    <i class="bi bi-search me-2"></i> Commencer votre analyse
+                </a>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add 3D tilt effect to cards with class tilt-card
+    const tiltCards = document.querySelectorAll('.tilt-card');
+    tiltCards.forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const xPos = (x - centerX) / centerX;
+            const yPos = (y - centerY) / centerY;
+
+            card.querySelector('.card').style.transform = `perspective(1000px) rotateY(${xPos * 5}deg) rotateX(${-yPos * 5}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+
+        card.addEventListener('mouseleave', function() {
+            card.querySelector('.card').style.transform = 'perspective(1000px) rotateY(0) rotateX(0) scale3d(1, 1, 1)';
+        });
+    });
+
+    // Animate floating hashtags randomly
+    const floatingTags = document.querySelectorAll('.floating-hashtags span');
+    floatingTags.forEach(tag => {
+        setInterval(() => {
+            const randomX = Math.random() * 15 - 7.5;
+            const randomY = Math.random() * 15 - 7.5;
+            tag.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            tag.style.transition = 'transform 3s ease-in-out';
+        }, 3000);
+    });
+});
+</script>
 </body>
 </html>

@@ -9,19 +9,19 @@
     <!-- Page Header -->
     <div class="page-header">
         <div class="container">
-            <h1 class="display-4 fw-bold">Analyze Cultural Hashtag</h1>
-            <p class="lead">Unlock insights into hashtag trends and their impact on cultural events</p>
+            <h1 class="display-4 fw-bold" data-aos="fade-right" data-aos-duration="1000">Analyze Cultural Hashtag</h1>
+            <p class="lead" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">Unlock insights into hashtag trends and their impact on cultural events</p>
         </div>
     </div>
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-8">
+            <div class="col-lg-8" data-aos="fade-up" data-aos-duration="1000">
                 <div class="card shadow border-0 mb-5">
                     <div class="card-body p-4 p-lg-5">
                         <div class="text-center mb-4">
                             <div class="mb-3">
-                                <span class="badge bg-primary p-3 rounded-circle">
+                                <span class="badge bg-primary p-3 rounded-circle pulse">
                                     <i class="bi bi-search fs-4"></i>
                                 </span>
                             </div>
@@ -41,7 +41,9 @@
                                 </div>
                                 <div class="form-text mt-2">
                                     <i class="bi bi-info-circle-fill me-1 text-primary"></i>
-                                    Examples: cannes2025, festivalavignon, artbasel
+                                    Examples: <span class="badge rounded-pill bg-light text-primary">cannes2025</span>
+                                    <span class="badge rounded-pill bg-light text-primary">festivalavignon</span>
+                                    <span class="badge rounded-pill bg-light text-primary">artbasel</span>
                                 </div>
                                 <div class="invalid-feedback">
                                     Please enter a hashtag to analyze
@@ -51,34 +53,34 @@
                             <div class="row g-3 mb-4">
                                 <div class="col-md-6">
                                     <label for="startDate" class="form-label fw-medium">Start Date</label>
-                                    <div class="input-group">
+                                    <div class="input-group has-validation">
                                         <span class="input-group-text border-0 bg-light">
                                             <i class="bi bi-calendar-event"></i>
                                         </span>
                                         <input type="date" class="form-control border-0 bg-light"
                                                id="startDate" name="startDate" required>
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Please select a start date
+                                        <div class="invalid-feedback">
+                                            Please select a start date
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="endDate" class="form-label fw-medium">End Date</label>
-                                    <div class="input-group">
+                                    <div class="input-group has-validation">
                                         <span class="input-group-text border-0 bg-light">
                                             <i class="bi bi-calendar-event"></i>
                                         </span>
                                         <input type="date" class="form-control border-0 bg-light"
                                                id="endDate" name="endDate" required>
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Please select an end date
+                                        <div class="invalid-feedback">
+                                            Please select an end date
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="alert alert-info border-0 d-flex align-items-center mb-4" role="alert">
-                                <i class="bi bi-info-circle-fill me-3 fs-4"></i>
+                            <div class="alert alert-info border-0 d-flex align-items-center mb-4 bg-primary bg-opacity-10" role="alert">
+                                <i class="bi bi-info-circle-fill me-3 fs-4 text-primary"></i>
                                 <div>
                                     <strong>Best Practice:</strong> Choose a time period that covers before, during, and
                                     after the cultural event for the most insightful analysis of the hashtag lifecycle.
@@ -86,8 +88,9 @@
                             </div>
 
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary btn-lg">
+                                <button type="submit" class="btn btn-gradient btn-lg">
                                     <i class="bi bi-graph-up me-2"></i> Analyze Hashtag
+                                    <span class="ms-2 spinner-grow spinner-grow-sm d-none" role="status" aria-hidden="true" id="loadingSpinner"></span>
                                 </button>
                                 <a href="/" class="btn btn-link text-decoration-none">Cancel</a>
                             </div>
@@ -95,14 +98,16 @@
                     </div>
                 </div>
 
-                <div class="card border-0 bg-light shadow-sm">
+                <div class="card border-0 bg-light shadow-sm" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                     <div class="card-body p-4">
                         <h3 class="h5 fw-bold mb-3">What we analyze</h3>
                         <div class="row g-4">
                             <div class="col-md-4">
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 text-primary">
-                                        <i class="bi bi-activity fs-4"></i>
+                                        <div class="rounded-circle bg-primary bg-opacity-10 p-2 d-inline-flex">
+                                            <i class="bi bi-activity fs-4"></i>
+                                        </div>
                                     </div>
                                     <div class="ms-3">
                                         <h4 class="h6 fw-bold">Tweet Volume</h4>
@@ -114,7 +119,9 @@
                             <div class="col-md-4">
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 text-primary">
-                                        <i class="bi bi-heart fs-4"></i>
+                                        <div class="rounded-circle bg-primary bg-opacity-10 p-2 d-inline-flex">
+                                            <i class="bi bi-heart fs-4"></i>
+                                        </div>
                                     </div>
                                     <div class="ms-3">
                                         <h4 class="h6 fw-bold">Engagement Metrics</h4>
@@ -125,7 +132,9 @@
                             <div class="col-md-4">
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 text-primary">
-                                        <i class="bi bi-people fs-4"></i>
+                                        <div class="rounded-circle bg-primary bg-opacity-10 p-2 d-inline-flex">
+                                            <i class="bi bi-people fs-4"></i>
+                                        </div>
                                     </div>
                                     <div class="ms-3">
                                         <h4 class="h6 fw-bold">Key Influencers</h4>
@@ -133,6 +142,25 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Popular hashtags section -->
+                <div class="card border-0 shadow-sm mt-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                    <div class="card-body p-4">
+                        <h3 class="h5 fw-bold mb-3">Popular Cultural Hashtags</h3>
+                        <p class="text-muted small">Trending hashtags from cultural events you might want to analyze:</p>
+
+                        <div class="d-flex flex-wrap gap-2 mt-3">
+                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill">#cannesfestival</span>
+                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill">#festivalavignon</span>
+                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill">#artbasel</span>
+                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill">#metgala2025</span>
+                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill">#berlinale</span>
+                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill">#sundancefestival</span>
+                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill">#biennalearte</span>
+                            <span class="badge rounded-pill bg-light text-primary p-2 hashtag-pill">#tribeca2025</span>
                         </div>
                     </div>
                 </div>
@@ -148,6 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const startDateInput = document.getElementById('startDate');
     const endDateInput = document.getElementById('endDate');
     const hashtagInput = document.getElementById('hashtag');
+    const loadingSpinner = document.getElementById('loadingSpinner');
 
     // Set default dates (last week to today)
     const today = new Date();
@@ -166,6 +195,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!form.checkValidity()) {
             event.preventDefault();
             event.stopPropagation();
+        } else {
+            // Show loading spinner
+            loadingSpinner.classList.remove('d-none');
         }
 
         // Check that end date is after start date
@@ -173,7 +205,27 @@ document.addEventListener('DOMContentLoaded', function() {
         const endDate = new Date(endDateInput.value);
 
         if (endDate < startDate) {
-            alert('End date must be after start date');
+            // Create a toast notification
+            const toastContainer = document.createElement('div');
+            toastContainer.className = 'position-fixed top-0 end-0 p-3';
+            toastContainer.style.zIndex = '9999';
+            toastContainer.innerHTML = `
+                <div class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <i class="bi bi-exclamation-circle me-2"></i>
+                        <strong class="me-auto">Date Error</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        End date must be after start date
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(toastContainer);
+
+            const toast = new bootstrap.Toast(document.querySelector('.toast'));
+            toast.show();
+
             event.preventDefault();
         }
 
@@ -190,6 +242,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
         control.addEventListener('blur', function() {
             this.closest('.input-group').style.boxShadow = 'none';
+        });
+    });
+
+    // Make hashtag pills clickable to fill the hashtag input
+    const hashtagPills = document.querySelectorAll('.hashtag-pill');
+    hashtagPills.forEach(pill => {
+        pill.style.cursor = 'pointer';
+        pill.addEventListener('click', function() {
+            const hashtag = this.textContent.replace('#', '');
+            hashtagInput.value = hashtag;
+            hashtagInput.focus();
+            // Add a brief highlight effect
+            hashtagInput.style.backgroundColor = 'rgba(67, 97, 238, 0.1)';
+            setTimeout(() => {
+                hashtagInput.style.backgroundColor = '';
+                hashtagInput.style.transition = 'background-color 0.5s ease';
+            }, 300);
         });
     });
 });

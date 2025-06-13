@@ -14,6 +14,9 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" th:href="@{/css/style.css}" />
 
@@ -25,77 +28,270 @@
             --light-color: #f8f9fa;
             --dark-color: #212529;
             --twitter-blue: #1DA1F2;
+            --gradient-start: #4361ee;
+            --gradient-end: #3a0ca3;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f8f9fa;
+            overflow-x: hidden;
         }
 
         .navbar {
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.95) !important;
         }
 
         .navbar-brand {
             font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar-brand i {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 1rem;
+            margin: 0 0.2rem;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--light-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
         }
 
         .card {
             border: none;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
         .btn {
-            border-radius: 8px;
+            border-radius: 12px;
             font-weight: 500;
-            padding: 0.6rem 1.5rem;
-            transition: all 0.3s;
+            padding: 0.7rem 1.8rem;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:active::after {
+            width: 300px;
+            height: 300px;
         }
 
         .btn-primary {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border: none;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
         }
 
         .btn-primary:hover {
-            background-color: var(--secondary-color);
-            border-color: var(--secondary-color);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.5);
+            transform: translateY(-2px);
         }
 
         .page-header {
-            padding: 3rem 0;
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             color: white;
             margin-bottom: 2rem;
-            border-radius: 0 0 20px 20px;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            top: -100px;
+            right: -100px;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            bottom: -50px;
+            left: -50px;
         }
 
         .tweet-card {
-            border-radius: 12px;
-            border: 1px solid rgba(0,0,0,0.08);
-            padding: 1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0,0,0,0.05);
+            padding: 1.5rem;
             transition: all 0.3s ease;
+            background-color: white;
         }
 
         .tweet-card:hover {
-            background-color: rgba(29, 161, 242, 0.05);
+            box-shadow: 0 10px 30px rgba(29, 161, 242, 0.1);
+            border-color: rgba(29, 161, 242, 0.3);
+        }
+
+        .avatar-placeholder {
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
         }
 
         footer {
-            margin-top: 4rem;
+            margin-top: 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.03);
+            top: -200px;
+            right: -200px;
+        }
+
+        /* Animated gradient button */
+        .btn-gradient {
+            background-size: 200% auto;
+            transition: 0.5s;
+            background-image: linear-gradient(to right, var(--gradient-start) 0%, var(--gradient-end) 51%, var(--gradient-start) 100%);
+        }
+
+        .btn-gradient:hover {
+            background-position: right center;
+        }
+
+        /* Pulsing animation for special elements */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(67, 97, 238, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(67, 97, 238, 0);
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            z-index: 9999;
+            width: 0%;
+            transition: width 0.2s ease;
+        }
+
+        /* Floating label for form inputs */
+        .form-floating label {
+            transition: all 0.3s ease;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c5c5c5;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        /* Loading spinner */
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* 3D tilt effect for cards */
+        .tilt-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
     </style>
 </head>
 <body>
+    <!-- Scroll Progress Indicator -->
+    <div id="scrollIndicator" class="scroll-indicator"></div>
+
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--primary-color);">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(67, 97, 238, 0.95);">
         <div class="container">
             <a class="navbar-brand" href="/">
                 <i class="bi bi-hash display-6"></i> HashLife Analytics
@@ -110,10 +306,15 @@
                         <a class="nav-link" href="/"><i class="bi bi-house"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/analysis"><i class="bi bi-search"></i> Analyze Hashtag</a>
+                        <a class="nav-link" href="/analysis"><i class="bi bi-search"></i> Analyze</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="bi bi-info-circle"></i> About</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="btn btn-light btn-sm rounded-pill px-3" href="/analysis">
+                            <i class="bi bi-graph-up-arrow"></i> New Analysis
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -121,37 +322,52 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="container my-4" th:replace="${content}">
+    <div style="height: 70px;"></div><!-- Spacer for fixed navbar -->
+    <main class="container-fluid px-0" th:replace="${content}">
         <p>Page content goes here</p>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5">
+    <footer class="bg-dark text-white py-5 mt-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <h5><i class="bi bi-hash"></i> HashLife Analytics</h5>
-                    <p class="small">Uncovering insights from hashtag trends and cultural movements on social media.</p>
+                <div class="col-md-5" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-hash display-6 me-2 text-primary"></i>
+                        <h4 class="mb-0">HashLife Analytics</h4>
+                    </div>
+                    <p class="text-white-50">Uncovering insights from hashtag trends and cultural movements on social media platforms. Our analytics tools help you understand the lifecycle and impact of hashtags.</p>
                 </div>
-                <div class="col-md-3">
-                    <h6>Quick Links</h6>
+                <div class="col-md-3 offset-md-1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                    <h5 class="mb-3 border-bottom border-primary border-2 pb-2 d-inline-block">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="/" class="text-white-50">Home</a></li>
-                        <li><a href="/analysis" class="text-white-50">Analyze</a></li>
+                        <li class="mb-2"><a href="/" class="text-white-50 text-decoration-none hover-text-white"><i class="bi bi-chevron-right small me-1"></i>Home</a></li>
+                        <li class="mb-2"><a href="/analysis" class="text-white-50 text-decoration-none"><i class="bi bi-chevron-right small me-1"></i>Analyze</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none"><i class="bi bi-chevron-right small me-1"></i>Documentation</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none"><i class="bi bi-chevron-right small me-1"></i>API</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3">
-                    <h6>Connect</h6>
-                    <div class="d-flex gap-3 fs-4">
+                <div class="col-md-3" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <h5 class="mb-3 border-bottom border-primary border-2 pb-2 d-inline-block">Connect</h5>
+                    <div class="d-flex gap-3 fs-4 mb-3">
                         <a href="#" class="text-white-50"><i class="bi bi-twitter"></i></a>
                         <a href="#" class="text-white-50"><i class="bi bi-github"></i></a>
                         <a href="#" class="text-white-50"><i class="bi bi-linkedin"></i></a>
                     </div>
+                    <p class="text-white-50 small">Subscribe to our newsletter for updates</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control bg-dark border-secondary text-white" placeholder="Your email">
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
                 </div>
             </div>
-            <hr class="my-3">
-            <div class="text-center">
-                <p class="mb-0 small">© 2025 HashLife Analytics - Digital Skills Project</p>
+            <hr class="my-4 bg-secondary">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <p class="mb-2 mb-md-0 text-white-50 small">© 2025 HashLife Analytics - Digital Skills Project</p>
+                <div class="d-flex gap-3">
+                    <a href="#" class="text-white-50 small text-decoration-none">Privacy Policy</a>
+                    <a href="#" class="text-white-50 small text-decoration-none">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
@@ -161,5 +377,42 @@
     <script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
     <!-- Chart.js -->
     <script th:src="@{/webjars/chartjs/2.9.4/Chart.min.js}"></script>
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS animations
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+
+            // Scroll progress indicator
+            window.addEventListener('scroll', function() {
+                const scrollIndicator = document.getElementById('scrollIndicator');
+                const totalScroll = document.body.scrollHeight - window.innerHeight;
+                const scrollPosition = window.pageYOffset;
+                const scrolled = (scrollPosition / totalScroll) * 100;
+                scrollIndicator.style.width = scrolled + '%';
+
+                // Change navbar color on scroll
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        });
+
+        // Back to top button functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
 </body>
 </html>
